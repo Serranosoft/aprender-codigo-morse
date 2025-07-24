@@ -3,14 +3,13 @@ import { createContext, useContext, useState } from 'react';
 
 const LetterContext = createContext(null);
 
-export function LetterProvider({ children, letters, values }) {
+export function LetterProvider({ children, letters, step, setStep }) {
     
     const [currentLetter, setCurrentLetter] = useState(null);
     const [correctAnswer, setCorrectAnswer] = useState(null);
-    const [step, setStep] = useState(0);
 
     return (
-        <LetterContext.Provider value={{ letters, values, currentLetter, setCurrentLetter, setCorrectAnswer, correctAnswer, step, setStep }}>
+        <LetterContext.Provider value={{ letters, currentLetter, setCurrentLetter, setCorrectAnswer, correctAnswer, step, setStep }}>
             {children}
         </LetterContext.Provider>
     );

@@ -5,7 +5,7 @@ import { useLetter } from "./letterProvider";
 import { useEffect } from "react";
 import { STEP_GOAL } from "../../../app/(tabs)/learn";
 
-export default function Training({ letters, isFinished, setIsFinished }) {
+export default function Training({ letters, setIsFinished }) {
     const { step, setStep } = useLetter();
 
 
@@ -15,12 +15,6 @@ export default function Training({ letters, isFinished, setIsFinished }) {
             setIsFinished(true);
         }
     }, [step])
-
-    useEffect(() => {
-        if (isFinished) {
-            setStep(0);
-        }
-    }, [isFinished])
     
     return (
         <View>
