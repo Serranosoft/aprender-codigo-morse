@@ -16,15 +16,16 @@ export default function Learn() {
     const [step, setStep] = useState(0);
 
     function closeCallback() {
+        setStep(0);
         setIsReady(false);
         setIsFinished(false);
     }
 
     useEffect(() => {
-        if (isFinished) {
-            setStep(0);
+        if (step === STEP_GOAL) {
+            setIsFinished(true);
         }
-    }, [isFinished])
+    }, [step])
 
 
     return (

@@ -15,7 +15,7 @@ export default function Header({
     step,
 }) {
 
-    function back() {
+    function handleBack() {
         if (backCallback) {
             backCallback();
         } else {
@@ -31,7 +31,7 @@ export default function Header({
                 </TouchableOpacity>
             }
             {back &&
-                <TouchableOpacity onPress={() => back()}>
+                <TouchableOpacity onPress={() => handleBack()}>
                     <Ionicons name="arrow-back" size={24} color="#fff" />
                 </TouchableOpacity>
             }

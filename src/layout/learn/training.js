@@ -9,12 +9,7 @@ export default function Training({ letters, setIsFinished }) {
     const { step, setStep } = useLetter();
 
 
-    useEffect(() => {
-        if (step === STEP_GOAL) {
-            setStep(0);
-            setIsFinished(true);
-        }
-    }, [step])
+    
     
     return (
         <View>
