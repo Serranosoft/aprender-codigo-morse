@@ -7,7 +7,6 @@ export function LetterProvider({ children, letters, values }) {
     
     const [currentLetter, setCurrentLetter] = useState(null);
     const [correctAnswer, setCorrectAnswer] = useState(null);
-
     const [step, setStep] = useState(0);
 
     return (

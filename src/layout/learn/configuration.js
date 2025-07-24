@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Text, View } from "react-native";
 import { getLevelData } from "./useLearn";
+import { ui } from "../../utils/styles";
 
 export default function Configuration({ setLetters, /* setValues, */ setIsReady }) {
     
@@ -16,7 +17,7 @@ export default function Configuration({ setLetters, /* setValues, */ setIsReady 
 
     return (
         <View>
-            <Text>Elige un nivel</Text>
+            <Text style={ui.text}>Elige un nivel</Text>
             <Button title="1" onPress={() => setLevel(1)}></Button>
             <Button title="2" onPress={() => setLevel(2)}></Button>
             <Button title="3" onPress={() => setLevel(3)}></Button>
