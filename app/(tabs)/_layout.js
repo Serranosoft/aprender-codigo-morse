@@ -56,6 +56,19 @@ export default function Layout() {
                         tabBarInactiveTintColor: "#b5b5b5",
                     }}
                 />
+                <Tabs.Screen
+                    name="send"
+                    options={{
+                        tabBarStyle: { height: 60, backgroundColor: colors.primary },
+                        tabBarLabel: "Envíar código",
+                        tabBarLabelStyle: { color: "#fff", marginTop: 2 },
+                        tabBarIcon: ({ focused }) => <Ionicons name="git-branch-outline" size={25} color={focused ? "#fff" : "red"} />,
+                        tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
+                        headerShown: false,
+                        tabBarActiveTintColor: "#337AB7",
+                        tabBarInactiveTintColor: "#b5b5b5",
+                    }}
+                />
             </Tabs>
             <StatusBar style="light" />
         </View>
