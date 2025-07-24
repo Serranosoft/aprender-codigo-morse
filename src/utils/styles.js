@@ -1,5 +1,6 @@
 export const colors = {
     primary: "#1D1F20",
+    accent: "#02B5E4"
 }
 
 export const ui = {
@@ -12,6 +13,12 @@ export const ui = {
         fontFamily: "Regular",
         color: "#fff",
         fontSize: 16.5,
+    },
+    center: {
+        textAlign: "center",
+    },
+    bold: {
+        fontFamily: "Semibold"
     },
     h1: {
         fontSize: 60,
