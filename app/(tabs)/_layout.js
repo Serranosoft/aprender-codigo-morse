@@ -35,12 +35,12 @@ export default function Layout() {
                     options={{
                         tabBarStyle: { height: 60, backgroundColor: colors.primary },
                         tabBarLabel: "Traductor",
-                        tabBarLabelStyle: { color: "#fff", marginTop: 2 },
-                        tabBarIcon: ({ focused }) => <MaterialIcons name="translate" size={25} color={focused ? "#fff" : "#fff"} />,
+                        tabBarLabelStyle: { marginTop: 2 },
+                        tabBarIcon: ({ focused }) => <MaterialIcons name="translate" size={25} color={focused ? colors.accent : "#fff"} />,
                         tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
                         headerShown: false,
-                        tabBarActiveTintColor: "#337AB7",
-                        tabBarInactiveTintColor: "#b5b5b5",
+                        tabBarActiveTintColor: colors.accent,
+                        tabBarInactiveTintColor: "#fff",
                     }}
                 />
                 <Tabs.Screen
@@ -48,12 +48,12 @@ export default function Layout() {
                     options={{
                         tabBarStyle: { height: 60, backgroundColor: colors.primary },
                         tabBarLabel: "Aprender",
-                        tabBarLabelStyle: { color: "#fff", marginTop: 2 },
-                        tabBarIcon: ({ focused }) => <MaterialIcons name="wysiwyg" size={25} color={focused ? "#fff" : "#fff"} />,
+                        tabBarLabelStyle: { marginTop: 2 },
+                        tabBarIcon: ({ focused }) => <MaterialIcons name="wysiwyg" size={25} color={focused ? colors.accent : "#fff"} />,
                         tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
                         headerShown: false,
-                        tabBarActiveTintColor: "#337AB7",
-                        tabBarInactiveTintColor: "#b5b5b5",
+                        tabBarActiveTintColor: colors.accent,
+                        tabBarInactiveTintColor: "#fff",
                     }}
                 />
                 <Tabs.Screen
@@ -61,12 +61,12 @@ export default function Layout() {
                     options={{
                         tabBarStyle: { height: 60, backgroundColor: colors.primary },
                         tabBarLabel: "Envíar código",
-                        tabBarLabelStyle: { color: "#fff", marginTop: 2 },
+                        tabBarLabelStyle: { marginTop: 2 },
                         tabBarIcon: ({ focused }) => <MaterialIcons name="send" size={25} color={focused ? "#fff" : "#fff"} />,
                         tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
                         headerShown: false,
-                        tabBarActiveTintColor: "#337AB7",
-                        tabBarInactiveTintColor: "#b5b5b5",
+                        tabBarActiveTintColor: colors.accent,
+                        tabBarInactiveTintColor: "#fff",
                     }}
                 />
                 <Tabs.Screen
@@ -74,12 +74,12 @@ export default function Layout() {
                     options={{
                         tabBarStyle: { height: 60, backgroundColor: colors.primary },
                         tabBarLabel: "Abecedario",
-                        tabBarLabelStyle: { color: "#fff", marginTop: 2 },
+                        tabBarLabelStyle: { marginTop: 2 },
                         tabBarIcon: ({ focused }) => <MaterialIcons name="book" size={25} color={focused ? "#fff" : "#fff"} />,
                         tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
                         headerShown: false,
-                        tabBarActiveTintColor: "#337AB7",
-                        tabBarInactiveTintColor: "#b5b5b5",
+                        tabBarActiveTintColor: colors.accent,
+                        tabBarInactiveTintColor: "#fff",
                     }}
                 />
             </Tabs>
