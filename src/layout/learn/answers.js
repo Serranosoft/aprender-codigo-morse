@@ -29,7 +29,9 @@ export default function Answers({ letters }) {
 
     function checkAnswer(value) {
         if (correctAnswer === value) {
-
+            alert("Correcto");
+        } else {
+            alert("Incorrecto");
         }
     }
 

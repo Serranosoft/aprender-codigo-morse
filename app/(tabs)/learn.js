@@ -57,6 +57,7 @@ export default function Learn() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.primary
+        backgroundColor: colors.primary,
+        padding: 24,
     }
 })
