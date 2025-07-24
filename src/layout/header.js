@@ -51,8 +51,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: colors.primary,
-        borderBottomWidth: 2,
-        borderColor: colors.secondary
     },
 
     back: {
