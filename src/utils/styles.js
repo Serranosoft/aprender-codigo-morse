@@ -41,4 +41,9 @@ export const ui = {
         color: "#fff",
         fontSize: 21,
     },
+    h5: {
+        fontFamily: "Regular",
+        color: "#fff",
+        fontSize: 18.5,
+    },
 }

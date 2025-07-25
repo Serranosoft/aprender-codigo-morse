@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { colors } from "../../src/utils/styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { initDb } from "../../src/utils/sqlite";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
@@ -14,6 +15,10 @@ export default function Layout() {
         "Medium": require("../../assets/fonts/AncizarSans-Medium.ttf"),
         "Semibold": require("../../assets/fonts/AncizarSans-Bold.ttf"),
     });
+
+    useEffect(() => {
+        initDb();
+    }, [])
 
     useEffect(() => {
         if (fontsLoaded) {

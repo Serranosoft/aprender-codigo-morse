@@ -1,135 +1,197 @@
-import { useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { getLevelData } from "./useLearn";
-import { colors, ui } from "../../utils/styles";
-import { Dropdown } from "react-native-element-dropdown";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import Button from "../../components/button";
+import { ui } from "../../utils/styles";
+import { getLevel, updateLevel } from "../../utils/sqlite";
 
-export default function Configuration({ setLetters, /* setValues, */ setIsReady }) {
+export default function Configuration({ setLetters, setIsReady }) {
 
     const [level, setLevel] = useState(null);
-    const [value, setValue] = useState(null);
-    const [isFocus, setIsFocus] = useState(false);
+    const [currentLevel, setCurrentLevel] = useState(null);
 
     function start() {
         const letters = getLevelData(level);
-        // const values = Object.values(letters);
         setLetters(letters);
-        // setValues(values);
         setIsReady(true);
     }
 
+
+    useEffect(() => {
+        checkCurrentLevel();
+    }, [])
+
+    async function checkCurrentLevel() {
+        const currentLvl = await getLevel();
+        setCurrentLevel(parseInt(currentLvl));
+    }
+
+    async function test() {
+        const newLvl = currentLevel + 1;
+        await updateLevel(newLvl);
+        await checkCurrentLevel();
+    }
+
+    useEffect(() => {
+        if (level) start();
+    }, [level])
+
     return (
         <View style={styles.container}>
+
             <View style={styles.hero}>
-                <Image source={require("../../../assets/alarm-clock.png")} style={{ width: 100, height: 100 }} />
-                <Text style={[ui.text, ui.center]}>Dedica 5 minutos al día para aprender código morse <Text style={ui.bold}>en menos de 2 semanas</Text>.</Text>
+                <Image source={require("../../../assets/alarm-clock.png")} style={{ width: 70, height: 70 }} />
+                <Text style={[ui.h5, ui.center]}>Desbloquea todos los níveles y aprende código morse <Text style={ui.bold}>en menos de 2 semanas</Text>.</Text>
             </View>
-            <View style={styles.content}>
-                <View style={styles.group}>
-                    <Text style={ui.text}>Nivel seleccionado:</Text>
-                    <Dropdown
-                        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-                        placeholderStyle={ui.text}
-                        selectedTextStyle={ui.text}
-                        inputSearchStyle={styles.inputSearchStyle}
-                        iconStyle={styles.iconStyle}
-                        data={
-                            [
-                                { label: "Nivel 1", value: 1 },
-                                { label: "Nivel 2", value: 2 },
-                                { label: "Nivel 3", value: 3 },
-                                { label: "Nivel 4", value: 4 },
-                                { label: "Nivel 5", value: 5 },
-                                { label: "Nivel 6", value: 6 },
-                                { label: "Nivel 7", value: 7 },
-                                { label: "Nivel 8", value: 8 },
-                                { label: "Nivel 9", value: 9 },
-                                { label: "Nivel 10", value: 10 },
-                                { label: "Nivel 11", value: 11 },
-                                { label: "Nivel 12", value: 12 },
-                                { label: "Nivel 13", value: 13 },
-                                { label: "Nivel 14", value: 14 },
-                            ]
-                        }
-                        search
-                        maxHeight={300}
-                        labelField="label"
-                        valueField="value"
-                        placeholder={!isFocus ? 'Elige un nivel' : value}
-                        searchPlaceholder="Elige un nivel ..."
-                        value={value}
-                        onFocus={() => setIsFocus(true)}
-                        onBlur={() => setIsFocus(false)}
-                        onChange={item => {
-                            setLevel(item.value);
-                            setValue(item.value);
-                            setIsFocus(false);
-                        }}
-                        renderLeftIcon={() => (
-                            <Ionicons
-                                style={styles.icon}
-                                color={'#fff'}
-                                name="bulb-outline"
-                                size={24}
-                            />
-                        )}
-                    />
+
+            <ScrollView contentContainerStyle={styles.content} style={{ width: "100%" }}>
+                <View style={styles.row}>
+                    <TouchableOpacity style={styles.box} onPress={() => setLevel(1)}>
+                        <View style={[styles.imgWrapper, { borderColor: "#F7C4DB" }]}>
+                            <Image source={require("../../../assets/dna.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 1</Text>
+                    </TouchableOpacity>
                 </View>
-                <Button onPress={() => start()}>
-                    <Text style={[ui.h3, ui.center]}>Comenzar</Text>
-                </Button>
-            </View>
+                <View style={styles.row}>
+                    <TouchableOpacity style={[styles.box, currentLevel < 2 && styles.disabled]} onPress={() => setLevel(2)} disabled={currentLevel < 2}>
+                        <View style={[styles.imgWrapper, { borderColor: "#CAB4EF" }]}>
+                            <Image source={require("../../../assets/calculator.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 2</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.box, currentLevel < 3 && styles.disabled]} onPress={() => setLevel(3)} disabled={currentLevel < 3}>
+                        <View style={[styles.imgWrapper, { borderColor: "#8BB6EF" }]}>
+                            <Image source={require("../../../assets/fountain-pen.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 3</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity style={[styles.box, currentLevel < 4 && styles.disabled]} onPress={() => setLevel(4)} disabled={currentLevel < 4}>
+                        <View style={[styles.imgWrapper, { borderColor: "#FEF2A8" }]}>
+                            <Image source={require("../../../assets/geography.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 4</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.box, currentLevel < 5 && styles.disabled]} onPress={() => setLevel(5)} disabled={currentLevel < 5}>
+                        <View style={[styles.imgWrapper, { borderColor: "#8CB7F0" }]}>
+                            <Image source={require("../../../assets/mortarboard.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 5</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.box, currentLevel < 6 && styles.disabled]} onPress={() => setLevel(6)} disabled={currentLevel < 6}>
+                        <View style={[styles.imgWrapper, { borderColor: "#FFA585" }]}>
+                            <Image source={require("../../../assets/school.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 6</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity style={[styles.box, currentLevel < 7 && styles.disabled]} onPress={() => setLevel(7)} disabled={currentLevel < 7}>
+                        <View style={[styles.imgWrapper, { borderColor: "#8EBBF5" }]}>
+                            <Image source={require("../../../assets/telescope.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 7</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.box, currentLevel < 8 && styles.disabled]} onPress={() => setLevel(8)} disabled={currentLevel < 8}>
+                        <View style={[styles.imgWrapper, { borderColor: "#D3BCFA" }]}>
+                            <Image source={require("../../../assets/book.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 8</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity style={[styles.box, currentLevel < 9 && styles.disabled]} onPress={() => setLevel(9)} disabled={currentLevel < 9}>
+                        <View style={[styles.imgWrapper, { borderColor: "#B4E9F3" }]}>
+                            <Image source={require("../../../assets/atom.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 9</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity style={[styles.box, currentLevel < 10 && styles.disabled]} onPress={() => setLevel(10)} disabled={currentLevel < 10}>
+                        <View style={[styles.imgWrapper, { borderColor: "#FFA586" }]}>
+                            <Image source={require("../../../assets/briefcase.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 10</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.box, currentLevel < 11 && styles.disabled]} onPress={() => setLevel(11)} disabled={currentLevel < 11}>
+                        <View style={[styles.imgWrapper, { borderColor: "#FFAB8A" }]}>
+                            <Image source={require("../../../assets/color-palette.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 11</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity style={[styles.box, currentLevel < 12 && styles.disabled]} onPress={() => setLevel(12)} disabled={currentLevel < 12}>
+                        <View style={[styles.imgWrapper, { borderColor: "#7BF1CA" }]}>
+                            <Image source={require("../../../assets/folder.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 12</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.box, currentLevel < 13 && styles.disabled]} onPress={() => setLevel(13)} disabled={currentLevel < 13}>
+                        <View style={[styles.imgWrapper, { borderColor: "#95BCF1" }]}>
+                            <Image source={require("../../../assets/paper-plane.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 13</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.box, currentLevel < 14 && styles.disabled]} onPress={() => setLevel(14)} disabled={currentLevel < 14}>
+                        <View style={[styles.imgWrapper, { borderColor: "#7AEAC5" }]}>
+                            <Image source={require("../../../assets/blackboard.png")} style={styles.boxImg} />
+                        </View>
+                        <Text style={[ui.text, styles.boxTitle]}>Nível 14</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView >
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
-        gap: 32
+        gap: 24,
+        alignItems: "center",
+        justifyContent: "flex-end",
     },
     hero: {
         alignSelf: "center",
         alignItems: "center",
         gap: 8,
-        maxWidth: 250,
+        maxWidth: 300,
     },
     content: {
-        gap: 16,
+        gap: 24,
+        alignItems: "center",
+        paddingBottom: 40
     },
-    group: {
-        gap: 8
+    row: {
+        flexDirection: "row",
+        gap: 32
     },
-    dropdown: {
-        height: 50,
-        borderColor: 'gray',
-        borderWidth: 0.5,
-        borderRadius: 8,
-        paddingHorizontal: 8,
+    box: {
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 8,
     },
-    icon: {
-        marginRight: 5,
+    disabled: {
+        opacity: 0.3,
     },
-    label: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
+    imgWrapper: {
+        width: 90,
+        height: 90,
+        borderRadius: 100,
+        borderWidth: 2,
+        padding: 8,
+        // borderColor: "#CAB4EF",
+        justifyContent: "center",
+        alignItems: "center",
     },
-    placeholderStyle: {
-        fontSize: 16,
+    boxImg: {
+        width: 60,
+        height: 60,
     },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-    },
+    boxTitle: {
+        maxWidth: 150,
+        textAlign: "center"
+    }
+
 });
