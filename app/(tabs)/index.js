@@ -1,26 +1,21 @@
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image,  StyleSheet, Text, View } from "react-native";
 import { colors, ui } from "../../src/utils/styles";
-import { useState } from "react";
-import { useTranslator } from "../../src/layout/home/useTranslator";
+import Header from "../../src/layout/header";
+import Translator from "../../src/layout/home/translator";
 
-export default function Translator() {
-    const [text, setText] = useState('');
-    const morse = useTranslator(text);
+export default function Home() {
+
 
     return (
         <>
+            <Header />
             <View style={styles.container}>
                 <View style={styles.hero}>
                     <Image source={require("../../assets/notebook.png")} style={{ width: 100, height: 100 }} />
-                    <Text style={[ui.text, ui.center]}>Traduce al instante cualquier <Text style={ui.bold}>texto a código morse</Text>.</Text>
+                    <Text style={[ui.text, ui.center]}>Traduce al instante cualquier <Text style={ui.bold}>texto a código morse</Text> o viceversa.</Text>
                 </View>
-                <TextInput
-                    value={text}
-                    onChangeText={setText}
-                    placeholder="Escribe un texto"
-                    style={{ borderBottomWidth: 1, marginBottom: 20 }}
-                />
-                <Text style={{ fontSize: 16 }}>{morse}</Text>
+
+                <Translator />
             </View>
         </>
     )
@@ -29,7 +24,10 @@ export default function Translator() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.primary
+        backgroundColor: colors.primary,
+        padding: 16,
+        paddingTop: 24,
+        gap: 16,
     },
     hero: {
         alignSelf: "center",
@@ -37,4 +35,5 @@ const styles = StyleSheet.create({
         gap: 8,
         maxWidth: 250,
     },
+    
 })
