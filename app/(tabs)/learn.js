@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.primary,
         padding: 16,
+        paddingTop: 24,
     }
 })

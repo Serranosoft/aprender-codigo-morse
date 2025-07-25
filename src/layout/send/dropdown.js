@@ -7,7 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function SendDropdown({ setOption }) {
 
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(OPTIONS.VIBRATION);
     const [isFocus, setIsFocus] = useState(false);
     
     return (

@@ -16,7 +16,6 @@ export async function initDb() {
     await db.execAsync('PRAGMA foreign_keys = ON');
 
     await db.execAsync(`
-        DROP TABLE IF EXISTS learn;
         CREATE TABLE IF NOT EXISTS learn (level TEXT);
     `);
 

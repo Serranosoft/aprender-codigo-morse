@@ -39,7 +39,7 @@ export default function Configuration({ setLetters, setIsReady }) {
         <View style={styles.container}>
 
             <View style={styles.hero}>
-                <Image source={require("../../../assets/alarm-clock.png")} style={{ width: 70, height: 70 }} />
+                <Image source={require("../../../assets/trophy.png")} style={{ width: 70, height: 70 }} />
                 <Text style={[ui.h5, ui.center]}>Desbloquea todos los níveles y aprende código morse <Text style={ui.bold}>en menos de 2 semanas</Text>.</Text>
             </View>
 
