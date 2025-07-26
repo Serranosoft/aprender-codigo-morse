@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useLetter } from "./letterProvider";
 
-export default function Answers({ letters }) {
+export default function Answers({ letters, setMistakes }) {
 
     const { correctAnswer, step, setStep } = useLetter();
     const [randomValues, setRandomValues] = useState([]);
+    const [isMistaken, setIsMistaken] = useState(null);
+    const [pressedValue, setPressedValue] = useState(null);
 
     useEffect(() => {
         if (correctAnswer) {
             retrieve();
         }
     }, [correctAnswer])
-    
+
+    useEffect(() => {
+        if (pressedValue) checkAnswer();
+    }, [pressedValue])
+
+    useEffect(() => {
+        if (isMistaken) setMistakes((mistakes) => mistakes + 1);
+    }, [isMistaken])
+
     function retrieve() {
         let values;
 
@@ -28,21 +38,39 @@ export default function Answers({ letters }) {
         setRandomValues(shuffled);
     }
 
-    function checkAnswer(value) {
-        if (correctAnswer === value) {
-            alert("Correcto");
-        } else {
-            alert("Incorrecto");
-        }
+    function checkAnswer() {
+        setIsMistaken(pressedValue !== correctAnswer);
 
-        setStep((step) => step + 1);
+        setTimeout(() => {
+            setStep((step) => step + 1);
+            setIsMistaken(null);
+        }, 1500);
     }
+
+
 
     return (
         <View style={styles.container}>
             {randomValues.map((value) => {
                 return (
-                    <TouchableOpacity style={styles.answer} key={value} onPress={() => checkAnswer(value)}>
+                    <TouchableOpacity
+                        key={value}
+                        onPress={() => setPressedValue(value)}
+                        disabled={isMistaken !== null}
+                        style={[
+                            styles.answer,
+                            {
+                                backgroundColor:
+                                    isMistaken === null
+                                        ? "#cccccc"
+                                        : value === correctAnswer
+                                            ? "#4CAF50"
+                                            : isMistaken && value === pressedValue
+                                                ? "#F44336"
+                                                : "#cccccc"
+                            }
+                        ]}
+                    >
                         <Text style={styles.answerText}>{value}</Text>
                     </TouchableOpacity>
                 )
@@ -62,12 +90,11 @@ const styles = StyleSheet.create({
     },
     answer: {
         borderRadius: 8,
-        // width: "100%",
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#cccccc",
-    }, 
+    },
     answerText: {
         fontSize: 60,
         textAlign: "center",
