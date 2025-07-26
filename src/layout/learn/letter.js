@@ -42,7 +42,7 @@ export default function Letter({ letters }) {
 
     return (
         <View style={styles.container}>
-            <Text style={[styles.title, { lineHeight: step % 2 === 0 ? 60 : 70 }]}>{currentLetter}</Text>
+            <Text style={styles.title}>{currentLetter}</Text>
         </View>
     )
 }
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         padding: 8,
         borderRadius: 8,
-        paddingTop: 40,
         borderWidth: 2,
         borderColor: colors.accent,
         width: 200,
