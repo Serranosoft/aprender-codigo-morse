@@ -10,15 +10,20 @@ import { colors } from "../../src/utils/styles";
 export const STEP_GOAL = 5;
 
 export default function Learn() {
+    
     const [isReady, setIsReady] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
     const [letters, setLetters] = useState([]);
     const [step, setStep] = useState(0);
+    const [correctAnswer, setCorrectAnswer] = useState(null);
+    const [currentLetter, setCurrentLetter] = useState(null);
 
     function closeCallback() {
         setStep(0);
         setIsReady(false);
         setIsFinished(false);
+        setCorrectAnswer(null);
+        setCurrentLetter(null);
     }
 
     useEffect(() => {
@@ -31,7 +36,7 @@ export default function Learn() {
     return (
         <>
 
-            <LetterProvider {...{ letters, step, setStep }}>
+            <LetterProvider {...{ letters, step, setStep, correctAnswer, setCorrectAnswer, currentLetter, setCurrentLetter }}>
                 <Header
                     back={!isReady || isFinished}
                     backCallback={isFinished ? closeCallback : null}

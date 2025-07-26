@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useLetter } from "./letterProvider";
+import { colors } from "../../utils/styles";
 
 export default function Letter({ letters }) {
 
@@ -27,7 +28,7 @@ export default function Letter({ letters }) {
             values = Object.keys(letters);
         }
         const randomKey = values[Math.floor(Math.random() * values.length)];
-        
+
         let randomValue;
         if (step % 2 === 0) {
             randomValue = Object.fromEntries(Object.entries(letters).map(([k, v]) => [v, k]))[randomKey];
@@ -40,6 +41,27 @@ export default function Letter({ letters }) {
     }
 
     return (
-        <Text>{currentLetter}</Text>
+        <View style={styles.container}>
+            <Text style={[styles.title, { lineHeight: step % 2 === 0 ? 60 : 70 }]}>{currentLetter}</Text>
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
+        padding: 8,
+        borderRadius: 8,
+        paddingTop: 40,
+        borderWidth: 2,
+        borderColor: colors.accent,
+        width: 200,
+    },
+    title: {
+        fontSize: 80,
+        color: "#fff",
+        textAlign: "center"
+    }
+})

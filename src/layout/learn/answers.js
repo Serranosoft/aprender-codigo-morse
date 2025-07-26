@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useLetter } from "./letterProvider";
 
 export default function Answers({ letters }) {
 
-    const { correctAnswer, step } = useLetter();
+    const { correctAnswer, step, setStep } = useLetter();
     const [randomValues, setRandomValues] = useState([]);
 
     useEffect(() => {
@@ -15,6 +15,7 @@ export default function Answers({ letters }) {
     
     function retrieve() {
         let values;
+
         if (step % 2 === 0) {
             values = Object.keys(letters);
         } else {
@@ -33,14 +34,16 @@ export default function Answers({ letters }) {
         } else {
             alert("Incorrecto");
         }
+
+        setStep((step) => step + 1);
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             {randomValues.map((value) => {
                 return (
-                    <TouchableOpacity key={value} onPress={() => checkAnswer(value)}>
-                        <Text style={{ fontSize: 55 }}>{value}</Text>
+                    <TouchableOpacity style={styles.answer} key={value} onPress={() => checkAnswer(value)}>
+                        <Text style={styles.answerText}>{value}</Text>
                     </TouchableOpacity>
                 )
             })}
@@ -48,3 +51,25 @@ export default function Answers({ letters }) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "center",
+        gap: 16,
+        marginTop: "auto"
+    },
+    answer: {
+        borderRadius: 8,
+        // width: "100%",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#cccccc",
+    }, 
+    answerText: {
+        fontSize: 60,
+        textAlign: "center",
+    }
+})
