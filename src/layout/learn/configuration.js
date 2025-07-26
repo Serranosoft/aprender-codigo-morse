@@ -4,9 +4,8 @@ import { getLevelData } from "./useLearn";
 import { ui } from "../../utils/styles";
 import { getLevel, updateLevel } from "../../utils/sqlite";
 
-export default function Configuration({ setLetters, setIsReady }) {
+export default function Configuration({ setLetters, setIsReady, setLevel, level }) {
 
-    const [level, setLevel] = useState(null);
     const [currentLevel, setCurrentLevel] = useState(null);
 
     function start() {
@@ -25,11 +24,7 @@ export default function Configuration({ setLetters, setIsReady }) {
         setCurrentLevel(parseInt(currentLvl));
     }
 
-    async function test() {
-        const newLvl = currentLevel + 1;
-        await updateLevel(newLvl);
-        await checkCurrentLevel();
-    }
+    
 
     useEffect(() => {
         if (level) start();

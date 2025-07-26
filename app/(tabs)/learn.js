@@ -18,9 +18,11 @@ export default function Learn() {
     const [correctAnswer, setCorrectAnswer] = useState(null);
     const [currentLetter, setCurrentLetter] = useState(null);
     const [mistakes, setMistakes] = useState(0);
+    const [level, setLevel] = useState(null);
 
     function closeCallback() {
         setStep(0);
+        setLevel(null);
         setIsReady(false);
         setIsFinished(false);
         setCorrectAnswer(null);
@@ -47,13 +49,13 @@ export default function Learn() {
                     step={step}
                 />
                 <View style={styles.container}>
-                    {isReady ?
+                     {isReady ?
                         isFinished ?
-                            <FinishScreen />
+                            <FinishScreen {...{ mistakes, level, closeCallback }} />
                             :
                             <Training {...{ letters, setMistakes }} />
                         :
-                        <Configuration {...{ setLetters, setIsReady }} />}
+                        <Configuration {...{ setLetters, setLevel, level, setIsReady }} />}
                 </View>
             </LetterProvider>
         </>
