@@ -17,6 +17,12 @@ export default function Alphabet() {
         <>
             <Header back />
             <View style={styles.container}>
+
+                <View style={styles.hero}>
+                    <Image source={require("../../assets/dictionary.png")} style={{ width: 100, height: 100 }} />
+                    <Text style={[ui.text, ui.center]}>Descubre <Text style={ui.bold}>como se escribe cada letra</Text> del diccionario morse.</Text>
+                </View>
+
                 <View style={styles.columns}>
                     <Text style={[ui.h3, ui.bold]}>Letra</Text>
                     <Text style={[ui.h3, ui.bold]}>Morse</Text>
@@ -52,6 +58,12 @@ const styles = StyleSheet.create({
         paddingTop: 24,
         backgroundColor: colors.primary,
         alignItems: "center",
+    },
+    hero: {
+        alignSelf: "center",
+        alignItems: "center",
+        gap: 8,
+        maxWidth: 250,
     },
     columns: {
         width: 300,
