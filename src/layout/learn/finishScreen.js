@@ -5,16 +5,17 @@ import { ui } from "../../utils/styles";
 import Button from "../../components/button";
 import { router } from "expo-router";
 import { useEffect } from "react";
+import { updateLevel } from "../../utils/sqlite";
 
-export default function FinishScreen({ mistakes, level, closeCallback }) {
+export default function FinishScreen({ mistakes, level, closeCallback, currentLevel, checkCurrentLevel }) {
     useEffect(() => {
-        if (mistakes < 5) {
+        if (mistakes < 10) {
             levelUp();
         }
     }, [mistakes])
 
     async function levelUp() {
-        const newLvl = currentLevel + 1;
+        const newLvl = parseInt(currentLevel) + 1;
         await updateLevel(newLvl);
         await checkCurrentLevel();
     }
@@ -24,7 +25,7 @@ export default function FinishScreen({ mistakes, level, closeCallback }) {
             <View style={styles.hero}>
                 <Image source={require("../../../assets/medal.png")} style={{ width: 100, height: 100 }} />
                 {
-                    mistakes > 4 ?
+                    mistakes > 9 ?
                         <Text style={[ui.text, ui.center]}>Sigue así, <Text style={ui.bold}>estás un paso más cerca</Text> de conseguirlo 💪</Text>
                         :
                         <Text style={[ui.text, ui.center]}>¡Felicidades! Has completado <Text style={ui.bold}>el nivel {level} con éxito 🎉</Text>.</Text>
@@ -33,7 +34,7 @@ export default function FinishScreen({ mistakes, level, closeCallback }) {
             </View>
             <View style={styles.wrapper}>
                 {
-                    mistakes > 4 ?
+                    mistakes > 9 ?
                         <>
                             <Text style={[ui.h2, { textAlign: "center" }]}>Has acertado {STEP_GOAL - mistakes} de {STEP_GOAL}</Text>
                             <Text style={[ui.h5, { textAlign: "center" }]}>¡Has fallado muchas! Tienes que repetir este nivel para desbloquear el siguiente</Text>

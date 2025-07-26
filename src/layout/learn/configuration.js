@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
-import { Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useEffect } from "react";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { getLevelData } from "./useLearn";
 import { ui } from "../../utils/styles";
-import { getLevel, updateLevel } from "../../utils/sqlite";
 
-export default function Configuration({ setLetters, setIsReady, setLevel, level }) {
+export default function Configuration({ setLetters, setIsReady, setLevel, checkCurrentLevel, currentLevel, level }) {
 
-    const [currentLevel, setCurrentLevel] = useState(null);
 
     function start() {
         const letters = getLevelData(level);
@@ -18,11 +16,6 @@ export default function Configuration({ setLetters, setIsReady, setLevel, level 
     useEffect(() => {
         checkCurrentLevel();
     }, [])
-
-    async function checkCurrentLevel() {
-        const currentLvl = await getLevel();
-        setCurrentLevel(parseInt(currentLvl));
-    }
 
     
 

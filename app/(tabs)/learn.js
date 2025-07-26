@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { LetterProvider, useLetter } from "../../src/layout/learn/letterProvider";
 import Training from "../../src/layout/learn/training";
@@ -6,11 +6,12 @@ import Configuration from "../../src/layout/learn/configuration";
 import Header from "../../src/layout/header";
 import FinishScreen from "../../src/layout/learn/finishScreen";
 import { colors } from "../../src/utils/styles";
+import { getLevel } from "../../src/utils/sqlite";
 
-export const STEP_GOAL = 5;
+export const STEP_GOAL = 15;
 
 export default function Learn() {
-    
+
     const [isReady, setIsReady] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
     const [letters, setLetters] = useState([]);
@@ -19,9 +20,11 @@ export default function Learn() {
     const [currentLetter, setCurrentLetter] = useState(null);
     const [mistakes, setMistakes] = useState(0);
     const [level, setLevel] = useState(null);
+    const [currentLevel, setCurrentLevel] = useState(null);
 
     function closeCallback() {
         setStep(0);
+        setMistakes(0);
         setLevel(null);
         setIsReady(false);
         setIsFinished(false);
@@ -34,6 +37,11 @@ export default function Learn() {
             setIsFinished(true);
         }
     }, [step])
+
+    async function checkCurrentLevel() {
+        const currentLvl = await getLevel();
+        setCurrentLevel(parseInt(currentLvl));
+    }
 
 
     return (
@@ -49,13 +57,13 @@ export default function Learn() {
                     step={step}
                 />
                 <View style={styles.container}>
-                     {isReady ?
+                    {isReady ?
                         isFinished ?
-                            <FinishScreen {...{ mistakes, level, closeCallback }} />
+                            <FinishScreen {...{ mistakes, level, closeCallback, currentLevel, checkCurrentLevel }} />
                             :
                             <Training {...{ letters, setMistakes }} />
                         :
-                        <Configuration {...{ setLetters, setLevel, level, setIsReady }} />}
+                        <Configuration {...{ setLetters, setLevel, level, setIsReady, currentLevel, checkCurrentLevel }} />}
                 </View>
             </LetterProvider>
         </>
