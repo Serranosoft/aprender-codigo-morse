@@ -217,12 +217,12 @@
         {
             "symbol": "(",
             "morse": "-.--.",
-            "word": "ParéntesisAbre"
+            "word": "-"
         },
         {
             "symbol": ")",
             "morse": "-.--.-",
-            "word": "ParéntesisCierra"
+            "word": "-"
         },
         {
             "symbol": "@",
