@@ -20,7 +20,7 @@ export default function Learn() {
     const [currentLetter, setCurrentLetter] = useState(null);
     const [mistakes, setMistakes] = useState(0);
     const [level, setLevel] = useState(null);
-    const [currentLevel, setCurrentLevel] = useState(null);
+    const [currentLevel, setCurrentLevel] = useState(10);
 
     function closeCallback() {
         setStep(0);
@@ -61,7 +61,7 @@ export default function Learn() {
                         isFinished ?
                             <FinishScreen {...{ mistakes, level, closeCallback, currentLevel, checkCurrentLevel }} />
                             :
-                            <Training {...{ letters, setMistakes }} />
+                            <Training {...{ letters, setMistakes, level }} />
                         :
                         <Configuration {...{ setLetters, setLevel, level, setIsReady, currentLevel, checkCurrentLevel }} />}
                 </View>

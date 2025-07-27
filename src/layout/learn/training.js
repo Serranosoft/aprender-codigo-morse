@@ -5,12 +5,12 @@ import { useLetter } from "./letterProvider";
 import { useEffect } from "react";
 import { STEP_GOAL } from "../../../app/(tabs)/learn";
 
-export default function Training({ letters, setMistakes }) {
+export default function Training({ letters, setMistakes, level }) {
     
     return (
         <View style={styles.container}>
             <Letter {...{ letters }} />
-            <Answers {...{ letters, setMistakes }} />
+            <Answers {...{ letters, setMistakes, level }} />
         </View>
     )
 }
