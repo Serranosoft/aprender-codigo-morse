@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useLetter } from "./letterProvider";
 
-export default function Answers({ letters, setMistakes }) {
-
+export default function Answers({ letters, setMistakes, level }) {
     const { correctAnswer, step, setStep } = useLetter();
     const [randomValues, setRandomValues] = useState([]);
     const [isMistaken, setIsMistaken] = useState(null);
@@ -32,10 +31,21 @@ export default function Answers({ letters, setMistakes }) {
             values = Object.values(letters);
         }
 
-        const randomValue = values.find((value) => value != correctAnswer);
-        const options = [randomValue, correctAnswer];
-        const shuffled = options.sort(() => Math.random() - 0.5);
+        // Calculamos la cantidad de opciones (nvl 4+ se muestran 4 respuestas)
+        const numberOfOptions = level > 3 ? 4 : 2;
+        // Obtenemos la lista de respuestas incorrectas
+        const wrongOptions = values.filter((v) => v !== correctAnswer);
+        // Barajar posibilidades de respuestas
+        const selectedWrongOptions = shuffleArray(wrongOptions).slice(0, numberOfOptions - 1);
+        // Incluimos la respuesta correcta en la colección de respuestas
+        const allOptions = [...selectedWrongOptions, correctAnswer];
+        const shuffled = shuffleArray(allOptions);
+
         setRandomValues(shuffled);
+    }
+
+    function shuffleArray(array) {
+        return [...array].sort(() => Math.random() - 0.5);
     }
 
     function checkAnswer() {
@@ -60,6 +70,7 @@ export default function Answers({ letters, setMistakes }) {
                         style={[
                             styles.answer,
                             {
+                                width: 140,
                                 backgroundColor:
                                     isMistaken === null
                                         ? "#cccccc"
@@ -86,11 +97,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         gap: 16,
-        marginTop: "auto"
+        marginTop: "auto",
+        flexWrap: "wrap"
     },
     answer: {
         borderRadius: 8,
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#cccccc",
