@@ -21,7 +21,6 @@ export default function SendDropdown({ setOption }) {
                 [
                     { label: "Vibración", value: OPTIONS.VIBRATION },
                     { label: "Linterna", value: OPTIONS.FLASH },
-                    { label: "Sonido", value: OPTIONS.SOUND },
                 ]
             }
             maxHeight={300}

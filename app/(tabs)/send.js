@@ -10,7 +10,6 @@ import VibrationHandler from "../../src/layout/send/vibrationHandler";
 export const OPTIONS = {
     VIBRATION: "VIBRATION",
     FLASH: "FLASH",
-    SOUND: "SOUND",
 }
 export default function Send() {
 
@@ -33,10 +32,10 @@ export default function Send() {
                         option === OPTIONS.VIBRATION ?
                             <VibrationHandler {...{ pressed }} />
                             :
-                            option === OPTIONS.FLASH ?
+                            /* option === OPTIONS.FLASH ? */
                                 <FlashHandler {...{ pressed }} />
-                                :
-                                <Text></Text>
+                                /* :
+                                <Text></Text> */
 
                     }
 
