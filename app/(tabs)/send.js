@@ -7,12 +7,9 @@ import Header from "../../src/layout/header";
 import VibrationHandler from "../../src/layout/send/vibrationHandler";
 import { AdsContext } from "../../src/utils/Context";
 import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
+import { OPTIONS } from "../../src/layout/send/utils";
 
 
-export const OPTIONS = {
-    VIBRATION: "VIBRATION",
-    FLASH: "FLASH",
-}
 export default function Send() {
     const { adsLoaded } = useContext(AdsContext);
 

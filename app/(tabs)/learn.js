@@ -1,6 +1,6 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { LetterProvider, useLetter } from "../../src/layout/learn/letterProvider";
+import { LetterProvider } from "../../src/layout/learn/letterProvider";
 import Training from "../../src/layout/learn/training";
 import Configuration from "../../src/layout/learn/configuration";
 import Header from "../../src/layout/header";
@@ -9,12 +9,11 @@ import { colors } from "../../src/utils/styles";
 import { getLevel } from "../../src/utils/sqlite";
 import { AdsContext } from "../../src/utils/Context";
 import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
-
-export const STEP_GOAL = 15;
+import { STEP_GOAL } from "../../src/layout/learn/utils";
 
 export default function Learn() {
 
-    const { adsLoaded } = useContext(AdsContext);
+    const { adsLoaded, setAdTrigger } = useContext(AdsContext);
     
     const [isReady, setIsReady] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
@@ -40,6 +39,8 @@ export default function Learn() {
         if (step === STEP_GOAL) {
             setIsFinished(true);
         }
+        
+        if (step % 3 === 0) setAdTrigger((adTrigger) => adTrigger + 1);
     }, [step])
 
     async function checkCurrentLevel() {

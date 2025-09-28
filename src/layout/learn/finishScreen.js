@@ -1,11 +1,11 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useLetter } from "./letterProvider";
-import { STEP_GOAL } from "../../../app/(tabs)/learn";
 import { ui } from "../../utils/styles";
 import Button from "../../components/button";
 import { router } from "expo-router";
 import { useEffect } from "react";
 import { updateLevel } from "../../utils/sqlite";
+import { STEP_GOAL } from "./utils";
 
 export default function FinishScreen({ mistakes, level, closeCallback, currentLevel, checkCurrentLevel }) {
     useEffect(() => {

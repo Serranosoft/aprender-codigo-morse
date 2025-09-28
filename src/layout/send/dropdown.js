@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import { OPTIONS } from "../../../app/(tabs)/send";
 import { useState } from "react";
 import { ui } from "../../utils/styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { OPTIONS } from "./utils";
 
 export default function SendDropdown({ setOption }) {
 

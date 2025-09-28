@@ -3,8 +3,8 @@ import { colors, ui } from "../utils/styles";
 import { router } from "expo-router";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Progress from "./learn/progress";
-import { STEP_GOAL } from "../../app/(tabs)/learn";
 import { useLetter } from "./learn/letterProvider";
+import { STEP_GOAL } from "./learn/utils";
 
 export default function Header({
     back,

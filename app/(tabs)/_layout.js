@@ -1,4 +1,4 @@
-import { SplashScreen, Stack, Tabs } from "expo-router";
+import { SplashScreen, Tabs } from "expo-router";
 import { View, StatusBar, StyleSheet } from "react-native";
 import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";

@@ -1,9 +1,6 @@
-import { Button, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Answers from "./answers";
 import Letter from "./letter";
-import { useLetter } from "./letterProvider";
-import { useEffect } from "react";
-import { STEP_GOAL } from "../../../app/(tabs)/learn";
 
 export default function Training({ letters, setMistakes, level }) {
     
