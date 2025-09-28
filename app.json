@@ -21,6 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
+      "versionCode": 2,
       "package": "com.paulaymanu113.codigomorse"
     },
     "web": {
