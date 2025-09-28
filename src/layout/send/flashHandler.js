@@ -6,9 +6,7 @@ import { ui } from '../../utils/styles';
 export default function FlashHandler({ pressed }) {
     const cameraRef = useRef(null);
     const [permission, requestPermission] = useCameraPermissions();
-    useEffect(() => {
-        console.log(pressed);
-    }, [pressed])
+   
     useEffect(() => {
         requestPermission();
     }, []);
