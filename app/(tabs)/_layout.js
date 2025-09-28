@@ -8,6 +8,7 @@ import { initDb } from "../../src/utils/sqlite";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import * as StoreReview from 'expo-store-review';
 import AdsHandler from "../../src/utils/AdsHandler";
+import { AdsContext } from "../../src/utils/Context";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {

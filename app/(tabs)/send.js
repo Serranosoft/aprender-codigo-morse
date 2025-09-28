@@ -1,10 +1,12 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import FlashHandler from "../../src/layout/send/flashHandler";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SendDropdown from "../../src/layout/send/dropdown";
 import { colors, ui } from "../../src/utils/styles";
 import Header from "../../src/layout/header";
 import VibrationHandler from "../../src/layout/send/vibrationHandler";
+import { AdsContext } from "../../src/utils/Context";
+import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
 
 
 export const OPTIONS = {
@@ -12,6 +14,7 @@ export const OPTIONS = {
     FLASH: "FLASH",
 }
 export default function Send() {
+    const { adsLoaded } = useContext(AdsContext);
 
     const [option, setOption] = useState(OPTIONS.VIBRATION);
     const [pressed, setPressed] = useState(false);
@@ -19,6 +22,8 @@ export default function Send() {
     return (
         <>
             <Header />
+            {adsLoaded && <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
+
             <View style={styles.container}>
                 <View style={styles.hero}>
                     <Image source={require("../../assets/whistle.png")} style={{ width: 70, height: 70 }} />
@@ -31,9 +36,9 @@ export default function Send() {
                             <VibrationHandler {...{ pressed }} />
                             :
                             /* option === OPTIONS.FLASH ? */
-                                <FlashHandler {...{ pressed }} />
-                                /* :
-                                <Text></Text> */
+                            <FlashHandler {...{ pressed }} />
+                        /* :
+                        <Text></Text> */
 
                     }
 
@@ -71,9 +76,9 @@ const styles = StyleSheet.create({
         paddingBottom: 40
     },
     button: {
-        width: 200, 
+        width: 200,
         height: 200,
-        borderRadius: 100, 
+        borderRadius: 100,
         backgroundColor: colors.accent,
         justifyContent: "center",
         alignItems: "center",

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { LetterProvider, useLetter } from "../../src/layout/learn/letterProvider";
 import Training from "../../src/layout/learn/training";
@@ -7,11 +7,15 @@ import Header from "../../src/layout/header";
 import FinishScreen from "../../src/layout/learn/finishScreen";
 import { colors } from "../../src/utils/styles";
 import { getLevel } from "../../src/utils/sqlite";
+import { AdsContext } from "../../src/utils/Context";
+import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
 
 export const STEP_GOAL = 15;
 
 export default function Learn() {
 
+    const { adsLoaded } = useContext(AdsContext);
+    
     const [isReady, setIsReady] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
     const [letters, setLetters] = useState([]);
@@ -56,6 +60,7 @@ export default function Learn() {
                     learning={isReady}
                     step={step}
                 />
+                {adsLoaded && <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
                 <View style={styles.container}>
                     {isReady ?
                         isFinished ?

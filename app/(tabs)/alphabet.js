@@ -2,9 +2,13 @@ import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-nativ
 import morseData from '../../assets/alphabet.json';
 import { colors, ui } from "../../src/utils/styles";
 import Header from "../../src/layout/header";
+import { useContext } from "react";
+import { AdsContext } from "../../src/utils/Context";
+import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
 
 export default function Alphabet() {
 
+    const { adsLoaded } = useContext(AdsContext);
     const { letters, numbers, symbols } = morseData;
 
     const combinedData = [
@@ -16,6 +20,7 @@ export default function Alphabet() {
     return (
         <>
             <Header />
+            {adsLoaded && <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
             <View style={styles.container}>
 
                 <View style={styles.hero}>
@@ -30,12 +35,11 @@ export default function Alphabet() {
                 </View>
                 <View style={styles.content}>
                     <FlatList
-                        style={{ flex: 1, width: "100%" }}
-                        contentContainerStyle={{ paddingBottom: 40, gap: 24, justifyContent: "center", alignItems: "center" }}
+                        contentContainerStyle={styles.innerContent}
                         data={combinedData}
                         keyExtractor={(item, index) => `${item.type}-${index}`}
                         renderItem={({ item }) => (
-                            <View style={{ flexDirection: "row", justifyContent: "space-between", width: 300 }}>
+                            <View style={styles.item}>
                                 <Text style={ui.h4}>
                                     {item.letter || item.number || item.symbol}
                                 </Text>
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
         maxWidth: 250,
     },
     columns: {
-        width: 300,
+        width: "100%",
         flexDirection: "row",
         justifyContent: "space-between",
         paddingBottom: 8,
@@ -77,8 +81,19 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingBottom: 40,
     },
-    list: {
-        width: "100%",
 
+    innerContent: {
+        paddingBottom: 40,
+        paddingHorizontal: 8,
+        gap: 24,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    item: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
     }
+
 })
