@@ -1,17 +1,34 @@
-import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import { StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { colors, ui } from "../../utils/styles";
 import { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslator } from "./useTranslator";
+import { Image } from "expo-image";
+import * as Clipboard from 'expo-clipboard';
 
 export default function Translator() {
-    const [text, setText] = useState('');
+    const [text, setText] = useState("");
     const [swap, setSwap] = useState(false);
     const morse = useTranslator(text, swap);
+
+    async function clipboard() {
+        await Clipboard.setStringAsync(morse);
+    }
 
     return (
 
         <View style={styles.container}>
+            <View style={styles.swap}>
+                <Text style={[ui.muted, { color: swap ? "#cccccc" : colors.accent }]}>Texto a Morse</Text>
+                <Switch
+                    style={styles.switch}
+                    trackColor={{ false: colors.accent, true: "#cccccc" }}
+                    thumbColor={'#f4f3f4'}
+                    onValueChange={() => setSwap(!swap)}
+                    value={swap}
+                />
+                <Text style={[ui.muted, { color: swap ? colors.accent : "#cccccc" }]}>Morse a Texto</Text>
+            </View>
             <View style={styles.input}>
                 <TextInput
                     value={text}
@@ -27,21 +44,14 @@ export default function Translator() {
             </View>
             <View style={styles.answer}>
                 <Text style={morse ? ui.h5 : { color: "#cccccc" }}>{morse || `Aquí aparecerá tu ${swap ? "código morse" : "texto"} traducido`}</Text>
+                <TouchableOpacity
+                    style={styles.iconWrapper}
+                    onPress={clipboard}
+                >
+                    <Image style={styles.icon} source={require("../../../assets/clipboard.png")} />
+                </TouchableOpacity>
             </View>
-            <View style={styles.swap}>
-                <Text style={[ui.muted, { color: swap ? "#cccccc" : colors.accent }]}>Texto a Morse</Text>
-                <Switch
-                    style={styles.switch}
-                    trackColor={{ false: colors.accent, true: "#cccccc" }}
-                    thumbColor={'#f4f3f4'}
-                    onValueChange={() => setSwap(!swap)}
-                    value={swap}
-                />
-                <Text style={[ui.muted, { color: swap ? colors.accent : "#cccccc" }]}>Morse a Texto</Text>
-            </View>
-
         </View>
-
     )
 }
 
@@ -88,5 +98,22 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         gap: 8
+    },
+
+    iconWrapper: {
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        backgroundColor: "#3d3d3dff",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        bottom: 8,
+        right: 8,
+    },
+
+    icon: {
+        width: 24,
+        height: 24,
     }
 })
