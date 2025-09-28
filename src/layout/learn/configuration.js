@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { getLevelData } from "./useLearn";
 import { ui } from "../../utils/styles";
+import { AdsContext } from "../../utils/Context";
 
 export default function Configuration({ setLetters, setIsReady, setLevel, checkCurrentLevel, currentLevel, level }) {
 
+    const { setAdTrigger } = useContext(AdsContext);
 
     function start() {
         const letters = getLevelData(level);
         setLetters(letters);
         setIsReady(true);
+        setAdTrigger((adTrigger) => adTrigger + 1);
     }
 
 
@@ -17,7 +20,7 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
         checkCurrentLevel();
     }, [])
 
-    
+
 
     useEffect(() => {
         if (level) start();
