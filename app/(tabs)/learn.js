@@ -49,7 +49,7 @@ export default function Learn() {
 
             <LetterProvider {...{ letters, step, setStep, correctAnswer, setCorrectAnswer, currentLetter, setCurrentLetter }}>
                 <Header
-                    back={!isReady || isFinished}
+                    back={isFinished}
                     backCallback={isFinished ? closeCallback : null}
                     close={isReady && !isFinished}
                     closeCallback={closeCallback}

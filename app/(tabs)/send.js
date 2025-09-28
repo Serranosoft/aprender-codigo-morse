@@ -18,9 +18,7 @@ export default function Send() {
 
     return (
         <>
-            <Header
-                back={true}
-            />
+            <Header />
             <View style={styles.container}>
                 <View style={styles.hero}>
                     <Image source={require("../../assets/whistle.png")} style={{ width: 70, height: 70 }} />

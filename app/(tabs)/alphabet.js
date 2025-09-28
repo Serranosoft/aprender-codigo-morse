@@ -15,7 +15,7 @@ export default function Alphabet() {
 
     return (
         <>
-            <Header back />
+            <Header />
             <View style={styles.container}>
 
                 <View style={styles.hero}>
