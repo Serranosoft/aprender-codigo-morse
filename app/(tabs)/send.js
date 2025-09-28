@@ -6,8 +6,9 @@ import { colors, ui } from "../../src/utils/styles";
 import Header from "../../src/layout/header";
 import VibrationHandler from "../../src/layout/send/vibrationHandler";
 import { AdsContext } from "../../src/utils/Context";
-import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { OPTIONS } from "../../src/layout/send/utils";
+import { bannerId } from "../../src/utils/constants";
 
 
 export default function Send() {
@@ -19,7 +20,7 @@ export default function Send() {
     return (
         <>
             <Header />
-            {adsLoaded && <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
+            {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
 
             <View style={styles.container}>
                 <View style={styles.hero}>

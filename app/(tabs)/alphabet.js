@@ -1,10 +1,11 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import morseData from '../../assets/alphabet.json';
 import { colors, ui } from "../../src/utils/styles";
 import Header from "../../src/layout/header";
 import { useContext } from "react";
 import { AdsContext } from "../../src/utils/Context";
-import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import { bannerId } from "../../src/utils/constants";
 
 export default function Alphabet() {
 
@@ -20,7 +21,7 @@ export default function Alphabet() {
     return (
         <>
             <Header />
-            {adsLoaded && <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
+            {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
             <View style={styles.container}>
 
                 <View style={styles.hero}>

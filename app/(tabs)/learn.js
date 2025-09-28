@@ -8,8 +8,9 @@ import FinishScreen from "../../src/layout/learn/finishScreen";
 import { colors } from "../../src/utils/styles";
 import { getLevel } from "../../src/utils/sqlite";
 import { AdsContext } from "../../src/utils/Context";
-import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { STEP_GOAL } from "../../src/layout/learn/utils";
+import { bannerId } from "../../src/utils/constants";
 
 export default function Learn() {
 
@@ -61,7 +62,7 @@ export default function Learn() {
                     learning={isReady}
                     step={step}
                 />
-                {adsLoaded && <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
+                {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
                 <View style={styles.container}>
                     {isReady ?
                         isFinished ?

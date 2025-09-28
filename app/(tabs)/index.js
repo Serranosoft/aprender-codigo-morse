@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <>
             <Header />
-            {adsLoaded && <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
+            {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
             <View style={styles.container}>
                 <View style={styles.hero}>
                     <Image source={require("../../assets/notebook.png")} style={{ width: 100, height: 100 }} />
