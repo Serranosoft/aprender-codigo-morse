@@ -7,7 +7,12 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { initDb } from "../../src/utils/sqlite";
 import * as StoreReview from 'expo-store-review';
 import AdsHandler from "../../src/utils/AdsHandler";
-import { AdsContext } from "../../src/utils/Context";
+import { AdsContext, LangContext } from "../../src/utils/Context";
+import { I18n } from "i18n-js";
+import { getLocales } from "expo-localization";
+import { translations } from "../../src/utils/localizations";
+import * as Notifications from 'expo-notifications';
+import { scheduleWeeklyNotification } from "../../src/utils/notifications";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
@@ -20,14 +25,38 @@ export default function Layout() {
     });
 
     useEffect(() => {
-        initDb();
+        Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldShowBanner: true,
+                shouldShowList: true,
+                shouldPlaySound: false,
+                shouldSetBadge: false,
+            }),
+        });
     }, [])
 
+    useEffect(() => {
+        if (i18n) {
+            scheduleWeeklyNotification(i18n);
+        }
+    }, [i18n])
+
+    useEffect(() => {
+        initDb();
+    }, [])
+    
     useEffect(() => {
         if (fontsLoaded) {
             SplashScreen.hideAsync();
         }
     }, [fontsLoaded])
+
+    // Idioma
+    const [language, setLanguage] = useState(getLocales()[0].languageCode || "es");
+    const i18n = new I18n(translations);
+    i18n.locale = language;
+    i18n.enableFallback = true
+    i18n.defaultLocale = "es";
 
     // Gestión de anuncios
     const [adsLoaded, setAdsLoaded] = useState(false);
@@ -62,68 +91,70 @@ export default function Layout() {
         <>
             <AdsHandler ref={adsHandlerRef} showOpenAd={showOpenAd} adsLoaded={adsLoaded} setAdsLoaded={setAdsLoaded} setShowOpenAd={setShowOpenAd} />
             <View style={styles.container}>
-                <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, adsLoaded: adsLoaded, setShowOpenAd: setShowOpenAd }} >
+                <LangContext.Provider value={{ language: i18n, setLanguage: setLanguage }}>
+                    <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, adsLoaded: adsLoaded, setShowOpenAd: setShowOpenAd }} >
 
-                    <Tabs
-                        backBehavior="history"
-                        options={{ headerShown: false }}
-                    >
-                        <Tabs.Screen
-                            name="index"
-                            options={{
-                                tabBarStyle: { backgroundColor: colors.primary },
-                                tabBarLabel: "Traductor",
-                                tabBarLabelStyle: { marginBottom: 2 },
-                                tabBarIcon: ({ focused }) => <MaterialIcons name="translate" size={25} color={focused ? colors.accent : "#fff"} />,
-                                tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
-                                headerShown: false,
-                                tabBarActiveTintColor: colors.accent,
-                                tabBarInactiveTintColor: "#fff",
-                            }}
-                        />
-                        <Tabs.Screen
-                            name="learn"
-                            options={{
-                                tabBarStyle: { backgroundColor: colors.primary },
-                                tabBarLabel: "Aprender",
-                                tabBarLabelStyle: { marginTop: 2 },
-                                tabBarIcon: ({ focused }) => <MaterialIcons name="wysiwyg" size={25} color={focused ? colors.accent : "#fff"} />,
-                                tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
-                                headerShown: false,
-                                tabBarActiveTintColor: colors.accent,
-                                tabBarInactiveTintColor: "#fff",
-                            }}
-                        />
-                        <Tabs.Screen
-                            name="send"
-                            options={{
-                                tabBarStyle: { backgroundColor: colors.primary },
-                                tabBarLabel: "Envíar código",
-                                tabBarLabelStyle: { marginTop: 2 },
-                                tabBarIcon: ({ focused }) => <MaterialIcons name="send" size={25} color={focused ? colors.accent : "#fff"} />,
-                                tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
-                                headerShown: false,
-                                tabBarActiveTintColor: colors.accent,
-                                tabBarInactiveTintColor: "#fff",
-                            }}
-                        />
-                        <Tabs.Screen
-                            name="alphabet"
-                            options={{
+                        <Tabs
+                            backBehavior="history"
+                            options={{ headerShown: false }}
+                        >
+                            <Tabs.Screen
+                                name="index"
+                                options={{
+                                    tabBarStyle: { backgroundColor: colors.primary },
+                                    tabBarLabel: "Traductor",
+                                    tabBarLabelStyle: { marginBottom: 2 },
+                                    tabBarIcon: ({ focused }) => <MaterialIcons name="translate" size={25} color={focused ? colors.accent : "#fff"} />,
+                                    tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
+                                    headerShown: false,
+                                    tabBarActiveTintColor: colors.accent,
+                                    tabBarInactiveTintColor: "#fff",
+                                }}
+                            />
+                            <Tabs.Screen
+                                name="learn"
+                                options={{
+                                    tabBarStyle: { backgroundColor: colors.primary },
+                                    tabBarLabel: "Aprender",
+                                    tabBarLabelStyle: { marginTop: 2 },
+                                    tabBarIcon: ({ focused }) => <MaterialIcons name="wysiwyg" size={25} color={focused ? colors.accent : "#fff"} />,
+                                    tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
+                                    headerShown: false,
+                                    tabBarActiveTintColor: colors.accent,
+                                    tabBarInactiveTintColor: "#fff",
+                                }}
+                            />
+                            <Tabs.Screen
+                                name="send"
+                                options={{
+                                    tabBarStyle: { backgroundColor: colors.primary },
+                                    tabBarLabel: "Envíar código",
+                                    tabBarLabelStyle: { marginTop: 2 },
+                                    tabBarIcon: ({ focused }) => <MaterialIcons name="send" size={25} color={focused ? colors.accent : "#fff"} />,
+                                    tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
+                                    headerShown: false,
+                                    tabBarActiveTintColor: colors.accent,
+                                    tabBarInactiveTintColor: "#fff",
+                                }}
+                            />
+                            <Tabs.Screen
+                                name="alphabet"
+                                options={{
 
-                                tabBarStyle: { backgroundColor: colors.primary },
-                                tabBarLabel: "Abecedario",
-                                tabBarLabelStyle: { marginTop: 2 },
-                                tabBarIcon: ({ focused }) => <MaterialIcons name="book" size={25} color={focused ? colors.accent : "#fff"} />,
-                                tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
-                                headerShown: false,
-                                tabBarActiveTintColor: colors.accent,
-                                tabBarInactiveTintColor: "#fff",
-                            }}
-                        />
-                    </Tabs>
+                                    tabBarStyle: { backgroundColor: colors.primary },
+                                    tabBarLabel: "Abecedario",
+                                    tabBarLabelStyle: { marginTop: 2 },
+                                    tabBarIcon: ({ focused }) => <MaterialIcons name="book" size={25} color={focused ? colors.accent : "#fff"} />,
+                                    tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
+                                    headerShown: false,
+                                    tabBarActiveTintColor: colors.accent,
+                                    tabBarInactiveTintColor: "#fff",
+                                }}
+                            />
+                        </Tabs>
 
-                </AdsContext.Provider>
+                    </AdsContext.Provider>
+                </LangContext.Provider>
             </View>
         </>
     )

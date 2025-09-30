@@ -31,22 +31,23 @@
       "expo-router",
       "expo-sqlite",
       [
-      "react-native-google-mobile-ads",
-      {
+        "react-native-google-mobile-ads",
+        {
           "androidAppId": "ca-app-pub-3738413299329691~2833775109",
           "iosAppId": "ca-app-pub-3738413299329691~2833775109",
           "delayAppMeasurementInit": true,
           "userTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
-      }
-  ],
-  [
-      "expo-build-properties",
-      {
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
           "android": {
-              "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }"
+            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }"
           }
-      }
-  ]
+        }
+      ],
+      "expo-localization"
     ],
     "extra": {
       "router": {},
