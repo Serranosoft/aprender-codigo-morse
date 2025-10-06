@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useContext, useState } from "react";
-//import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colors, ui } from "../../src/utils/styles";
 import { LangContext } from "../../src/utils/Context";
 import Header from "../../src/layout/header";
@@ -30,7 +30,7 @@ export default function Settings() {
 
     async function updateLanguage(acronym) {
         setLanguage(acronym);
-        //await AsyncStorage.setItem(userPreferences.LANGUAGE, acronym);
+        await AsyncStorage.setItem(userPreferences.LANGUAGE, acronym);
     }
 
     function handlePress(acronym) {

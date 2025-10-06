@@ -13,6 +13,8 @@ import { getLocales } from "expo-localization";
 import { translations } from "../../src/utils/localizations";
 import * as Notifications from 'expo-notifications';
 import { scheduleWeeklyNotification } from "../../src/utils/notifications";
+import { userPreferences } from "../../src/utils/user-preferences";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
@@ -23,6 +25,26 @@ export default function Layout() {
         "Medium": require("../../assets/fonts/AncizarSans-Medium.ttf"),
         "Semibold": require("../../assets/fonts/AncizarSans-Bold.ttf"),
     });
+
+    // Idioma
+    const [language, setLanguage] = useState(null);
+    const i18n = new I18n(translations);
+    if (language) i18n.locale = language;
+    i18n.enableFallback = true
+    i18n.defaultLocale = "es";
+
+    // Gestión de anuncios
+    const [adsLoaded, setAdsLoaded] = useState(false);
+    const [adTrigger, setAdTrigger] = useState(0);
+    const [showOpenAd, setShowOpenAd] = useState(true);
+    const adsHandlerRef = createRef();
+
+    // Configurar notificaciones y cargar preferencias de usuario
+    useEffect(() => {
+        configureNotifications();
+        getUserPreferences();
+        initDb();
+    }, [])
 
     useEffect(() => {
         Notifications.setNotificationHandler({
@@ -35,34 +57,19 @@ export default function Layout() {
         });
     }, [])
 
+    // Al terminar de configurar el idioma se lanza notificación
     useEffect(() => {
-        if (i18n) {
+        if (language) {
             scheduleWeeklyNotification(i18n);
         }
-    }, [i18n])
+    }, [language])
 
+    // Ocultar SplashScreen cuando la fuente y el idioma se ha cargado.
     useEffect(() => {
-        initDb();
-    }, [])
-
-    useEffect(() => {
-        if (fontsLoaded) {
+        if (fontsLoaded && language) {
             SplashScreen.hideAsync();
         }
-    }, [fontsLoaded])
-
-    // Idioma
-    const [language, setLanguage] = useState(getLocales()[0].languageCode || "es");
-    const i18n = new I18n(translations);
-    i18n.locale = language;
-    i18n.enableFallback = true
-    i18n.defaultLocale = "es";
-
-    // Gestión de anuncios
-    const [adsLoaded, setAdsLoaded] = useState(false);
-    const [adTrigger, setAdTrigger] = useState(0);
-    const [showOpenAd, setShowOpenAd] = useState(true);
-    const adsHandlerRef = createRef();
+    }, [fontsLoaded, language]);
 
     useEffect(() => {
         if (adTrigger > 3) {
@@ -75,6 +82,23 @@ export default function Layout() {
             }
         }
     }, [adTrigger])
+
+    async function getUserPreferences() {
+        // Language
+        const language = await AsyncStorage.getItem(userPreferences.LANGUAGE);
+        setLanguage(language || getLocales()[0].languageCode);
+    }
+
+    async function configureNotifications() {
+        Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldShowBanner: true,
+                shouldShowList: true,
+                shouldPlaySound: false,
+                shouldSetBadge: false,
+            }),
+        });
+    }
 
     async function askForReview() {
         if (await StoreReview.hasAction()) {

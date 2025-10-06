@@ -14,6 +14,9 @@ export const ui = {
         color: "#fff",
         fontSize: 16.5,
     },
+    black: {
+        color: "#212121",
+    },
     center: {
         textAlign: "center",
     },
