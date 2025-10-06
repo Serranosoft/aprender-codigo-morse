@@ -5,12 +5,13 @@ import Translator from "../../src/layout/home/translator";
 import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
 import { bannerId } from "../../src/utils/constants";
 import { useContext } from "react";
-import { AdsContext } from "../../src/utils/Context";
+import { AdsContext, LangContext } from "../../src/utils/Context";
 
 export default function Home() {
 
     const { adsLoaded } = useContext(AdsContext);
-
+    const { language } = useContext(LangContext);
+    
     return (
         <>
             <Header />
@@ -19,6 +20,7 @@ export default function Home() {
                 <View style={styles.hero}>
                     <Image source={require("../../assets/notebook.png")} style={{ width: 100, height: 100 }} />
                     <Text style={[ui.text, ui.center]}>Traduce al instante cualquier <Text style={ui.bold}>texto a código morse</Text> o viceversa.</Text>
+                    <Text style={[ui.text, ui.center]}>{language.t("test")}</Text>
                 </View>
 
                 <Translator />

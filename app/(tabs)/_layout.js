@@ -44,7 +44,7 @@ export default function Layout() {
     useEffect(() => {
         initDb();
     }, [])
-    
+
     useEffect(() => {
         if (fontsLoaded) {
             SplashScreen.hideAsync();
@@ -141,6 +141,20 @@ export default function Layout() {
                                 name="alphabet"
                                 options={{
 
+                                    tabBarStyle: { backgroundColor: colors.primary },
+                                    tabBarLabel: "Abecedario",
+                                    tabBarLabelStyle: { marginTop: 2 },
+                                    tabBarIcon: ({ focused }) => <MaterialIcons name="book" size={25} color={focused ? colors.accent : "#fff"} />,
+                                    tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
+                                    headerShown: false,
+                                    tabBarActiveTintColor: colors.accent,
+                                    tabBarInactiveTintColor: "#fff",
+                                }}
+                            />
+                            <Tabs.Screen
+                                name="settings"
+                                options={{
+                                    href: null,
                                     tabBarStyle: { backgroundColor: colors.primary },
                                     tabBarLabel: "Abecedario",
                                     tabBarLabelStyle: { marginTop: 2 },
