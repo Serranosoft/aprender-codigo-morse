@@ -4,12 +4,15 @@ import { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslator } from "./useTranslator";
 import { Image } from "expo-image";
+import { useContext } from "react";
 import * as Clipboard from 'expo-clipboard';
+import { LangContext } from "../../utils/Context";
 
 export default function Translator() {
     const [text, setText] = useState("");
     const [swap, setSwap] = useState(false);
     const morse = useTranslator(text, swap);
+    const { language } = useContext(LangContext);
 
     async function clipboard() {
         await Clipboard.setStringAsync(morse);
@@ -19,7 +22,7 @@ export default function Translator() {
 
         <View style={styles.container}>
             <View style={styles.swap}>
-                <Text style={[ui.muted, { color: swap ? "#cccccc" : colors.accent }]}>Texto a Morse</Text>
+                <Text style={[ui.muted, { color: swap ? "#cccccc" : colors.accent }]}>{language.t("_translateTextToMorse")}</Text>
                 <Switch
                     style={styles.switch}
                     trackColor={{ false: colors.accent, true: "#cccccc" }}
@@ -27,13 +30,13 @@ export default function Translator() {
                     onValueChange={() => setSwap(!swap)}
                     value={swap}
                 />
-                <Text style={[ui.muted, { color: swap ? colors.accent : "#cccccc" }]}>Morse a Texto</Text>
+                <Text style={[ui.muted, { color: swap ? colors.accent : "#cccccc" }]}>{language.t("_translateMorseToText")}</Text>
             </View>
             <View style={styles.input}>
                 <TextInput
                     value={text}
                     onChangeText={setText}
-                    placeholder={`Escribe aquí el ${swap ? "código morse" : "texto"} que quieres traducir`}
+                    placeholder={`${language.t("_translatePlaceholder1")} ${swap ? language.t("_translateMorseCode") : language.t("_translateText")} ${language.t("_translatePlaceholder2")}`}
                     placeholderTextColor={"#cccccc"}
                     style={styles.textInput}
                     multiline={true}
@@ -43,7 +46,7 @@ export default function Translator() {
                 <Ionicons name="arrow-down" size={24} color="#fff" />
             </View>
             <View style={styles.answer}>
-                <Text style={morse ? ui.h5 : { color: "#cccccc" }}>{morse || `Aquí aparecerá tu ${swap ? "código morse" : "texto"} traducido`}</Text>
+                <Text style={morse ? ui.h5 : { color: "#cccccc" }}>{morse || `${language.t("_translateResult1")} ${swap ? language.t("_translateMorseCode") : language.t("_translateText")} ${language.t("_translateResult2")}`}</Text>
                 <TouchableOpacity
                     style={styles.iconWrapper}
                     onPress={clipboard}

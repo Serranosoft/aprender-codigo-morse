@@ -19,7 +19,7 @@ export default function Home() {
             <View style={styles.container}>
                 <View style={styles.hero}>
                     <Image source={require("../../assets/notebook.png")} style={{ width: 100, height: 100 }} />
-                    <Text style={[ui.text, ui.center]}>Traduce al instante cualquier <Text style={ui.bold}>texto a código morse</Text> o viceversa.</Text>
+                    <Text style={[ui.text, ui.center]}>{language.t("_translateTitle")}</Text>
                 </View>
 
                 <Translator />

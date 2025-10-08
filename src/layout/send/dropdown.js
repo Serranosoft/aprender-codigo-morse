@@ -1,12 +1,15 @@
 import { StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ui } from "../../utils/styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { OPTIONS } from "./utils";
+import { LangContext } from "../../utils/Context";
+
 
 export default function SendDropdown({ setOption }) {
 
+    const { language } = useContext(LangContext);
     const [value, setValue] = useState(OPTIONS.VIBRATION);
     const [isFocus, setIsFocus] = useState(false);
     
@@ -19,8 +22,8 @@ export default function SendDropdown({ setOption }) {
             iconStyle={styles.iconStyle}
             data={
                 [
-                    { label: "Vibración", value: OPTIONS.VIBRATION },
-                    { label: "Linterna", value: OPTIONS.FLASH },
+                    { label: language.t("_sendVibration"), value: OPTIONS.VIBRATION },
+                    { label: language.t("_sendFlashlight"), value: OPTIONS.FLASH },
                 ]
             }
             maxHeight={300}

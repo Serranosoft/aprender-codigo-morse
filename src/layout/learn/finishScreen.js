@@ -3,11 +3,16 @@ import { useLetter } from "./letterProvider";
 import { ui } from "../../utils/styles";
 import Button from "../../components/button";
 import { router } from "expo-router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { updateLevel } from "../../utils/sqlite";
 import { STEP_GOAL } from "./utils";
+import { LangContext } from "../../utils/Context";
 
 export default function FinishScreen({ mistakes, level, closeCallback, currentLevel, checkCurrentLevel }) {
+
+    const { language } = useContext(LangContext);
+
+
     useEffect(() => {
         if (mistakes < 10) {
             levelUp();
@@ -26,9 +31,9 @@ export default function FinishScreen({ mistakes, level, closeCallback, currentLe
                 <Image source={require("../../../assets/medal.png")} style={{ width: 100, height: 100 }} />
                 {
                     mistakes > 9 ?
-                        <Text style={[ui.text, ui.center]}>Sigue así, <Text style={ui.bold}>estás un paso más cerca</Text> de conseguirlo 💪</Text>
+                        <Text style={[ui.text, ui.center]}>{language.t("_learnEncouragement")}</Text>
                         :
-                        <Text style={[ui.text, ui.center]}>¡Felicidades! Has completado <Text style={ui.bold}>el nivel {level} con éxito 🎉</Text>.</Text>
+                        <Text style={[ui.text, ui.center]}>{language.t("_learnCongratulations")} {level} {language.t("_learnCongratulations2")}</Text>
                 }
 
             </View>
@@ -36,17 +41,17 @@ export default function FinishScreen({ mistakes, level, closeCallback, currentLe
                 {
                     mistakes > 9 ?
                         <>
-                            <Text style={[ui.h2, { textAlign: "center" }]}>Has acertado {STEP_GOAL - mistakes} de {STEP_GOAL}</Text>
-                            <Text style={[ui.h5, { textAlign: "center" }]}>¡Has fallado muchas! Tienes que repetir este nivel para desbloquear el siguiente</Text>
+                            <Text style={[ui.h2, { textAlign: "center" }]}>{language.t("_learnSuccesses")} {STEP_GOAL - mistakes} {language.t("_learnOf")} {STEP_GOAL}</Text>
+                            <Text style={[ui.h5, { textAlign: "center" }]}>{language.t("_learnRepeat")}</Text>
                         </>
                         :
                         <>
-                            <Text style={[ui.h2, { textAlign: "center" }]}>Has acertado {STEP_GOAL - mistakes} de {STEP_GOAL}</Text>
-                            <Text style={[ui.h5, { textAlign: "center" }]}>Has desbloqueado el siguiente nivel {level + 1}</Text>
+                            <Text style={[ui.h2, { textAlign: "center" }]}>{language.t("_learnSuccesses")} {STEP_GOAL - mistakes} {language.t("_learnOf")} {STEP_GOAL}</Text>
+                            <Text style={[ui.h5, { textAlign: "center" }]}>{language.t("_learnUnlock")} {level + 1}</Text>
                         </>
                 }
                 <Button style={{ marginTop: "32" }} onPress={() => closeCallback()}>
-                    <Text style={[ui.h4, ui.bold]}>Volver al inicio</Text>
+                    <Text style={[ui.h4, ui.bold]}>{language.t("_learnHome")}</Text>
                 </Button>
             </View>
         </View>

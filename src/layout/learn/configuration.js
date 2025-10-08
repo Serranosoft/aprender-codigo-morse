@@ -2,12 +2,13 @@ import { useContext, useEffect } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { getLevelData } from "./useLearn";
 import { ui } from "../../utils/styles";
-import { AdsContext } from "../../utils/Context";
+import { AdsContext, LangContext } from "../../utils/Context";
 
 export default function Configuration({ setLetters, setIsReady, setLevel, checkCurrentLevel, currentLevel, level }) {
 
     const { setAdTrigger } = useContext(AdsContext);
-
+    const { language } = useContext(LangContext);
+    
     function start() {
         const letters = getLevelData(level);
         setLetters(letters);
@@ -31,7 +32,7 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
 
             <View style={styles.hero}>
                 <Image source={require("../../../assets/trophy.png")} style={{ width: 70, height: 70 }} />
-                <Text style={[ui.h5, ui.center]}>Desbloquea todos los níveles y aprende código morse <Text style={ui.bold}>en menos de 2 semanas</Text>.</Text>
+                <Text style={[ui.h5, ui.center]}>{language.t("_learnTitle")}</Text>
             </View>
 
             <ScrollView contentContainerStyle={styles.content} style={{ width: "100%" }}>
@@ -40,7 +41,7 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
                         <View style={[styles.imgWrapper, { borderColor: "#F7C4DB" }]}>
                             <Image source={require("../../../assets/dna.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 1</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel1")}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.row}>
@@ -48,13 +49,13 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
                         <View style={[styles.imgWrapper, { borderColor: "#CAB4EF" }]}>
                             <Image source={require("../../../assets/calculator.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 2</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel2")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.box, currentLevel < 3 && styles.disabled]} onPress={() => setLevel(3)} disabled={currentLevel < 3}>
                         <View style={[styles.imgWrapper, { borderColor: "#8BB6EF" }]}>
                             <Image source={require("../../../assets/fountain-pen.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 3</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel3")}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.row}>
@@ -62,19 +63,19 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
                         <View style={[styles.imgWrapper, { borderColor: "#FEF2A8" }]}>
                             <Image source={require("../../../assets/geography.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 4</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel4")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.box, currentLevel < 5 && styles.disabled]} onPress={() => setLevel(5)} disabled={currentLevel < 5}>
                         <View style={[styles.imgWrapper, { borderColor: "#8CB7F0" }]}>
                             <Image source={require("../../../assets/mortarboard.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 5</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel5")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.box, currentLevel < 6 && styles.disabled]} onPress={() => setLevel(6)} disabled={currentLevel < 6}>
                         <View style={[styles.imgWrapper, { borderColor: "#FFA585" }]}>
                             <Image source={require("../../../assets/school.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 6</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel6")}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.row}>
@@ -82,13 +83,13 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
                         <View style={[styles.imgWrapper, { borderColor: "#8EBBF5" }]}>
                             <Image source={require("../../../assets/telescope.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 7</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel7")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.box, currentLevel < 8 && styles.disabled]} onPress={() => setLevel(8)} disabled={currentLevel < 8}>
                         <View style={[styles.imgWrapper, { borderColor: "#D3BCFA" }]}>
                             <Image source={require("../../../assets/book.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 8</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel8")}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.row}>
@@ -96,7 +97,7 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
                         <View style={[styles.imgWrapper, { borderColor: "#B4E9F3" }]}>
                             <Image source={require("../../../assets/atom.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 9</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel9")}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.row}>
@@ -104,13 +105,13 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
                         <View style={[styles.imgWrapper, { borderColor: "#FFA586" }]}>
                             <Image source={require("../../../assets/briefcase.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 10</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel10")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.box, currentLevel < 11 && styles.disabled]} onPress={() => setLevel(11)} disabled={currentLevel < 11}>
                         <View style={[styles.imgWrapper, { borderColor: "#FFAB8A" }]}>
                             <Image source={require("../../../assets/color-palette.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 11</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel11")}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.row}>
@@ -118,19 +119,19 @@ export default function Configuration({ setLetters, setIsReady, setLevel, checkC
                         <View style={[styles.imgWrapper, { borderColor: "#7BF1CA" }]}>
                             <Image source={require("../../../assets/folder.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 12</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel12")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.box, currentLevel < 13 && styles.disabled]} onPress={() => setLevel(13)} disabled={currentLevel < 13}>
                         <View style={[styles.imgWrapper, { borderColor: "#95BCF1" }]}>
                             <Image source={require("../../../assets/paper-plane.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 13</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel13")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.box, currentLevel < 14 && styles.disabled]} onPress={() => setLevel(14)} disabled={currentLevel < 14}>
                         <View style={[styles.imgWrapper, { borderColor: "#7AEAC5" }]}>
                             <Image source={require("../../../assets/blackboard.png")} style={styles.boxImg} />
                         </View>
-                        <Text style={[ui.text, styles.boxTitle]}>Nível 14</Text>
+                        <Text style={[ui.text, styles.boxTitle]}>{language.t("_learnLevel14")}</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView >

@@ -65,7 +65,7 @@ export default function Header({
                 }}>
                     <View style={styles.row}>
                         <Image style={styles.menuImg} source={require("../../assets/settings.png")} />
-                        <Text style={[ui.text, ui.black]}>{language.t("dropDownSettings")}</Text>
+                        <Text style={[ui.text, ui.black]}>{language.t("_dropDownSettings")}</Text>
                     </View>
                 </MenuItem>
             </Menu>

@@ -1,12 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import { Camera, CameraView, useCameraPermissions } from 'expo-camera';
 import { ui } from '../../utils/styles';
+import { LangContext } from '../../utils/Context';
 
 export default function FlashHandler({ pressed }) {
+    const { language } = useContext(LangContext);
     const cameraRef = useRef(null);
     const [permission, requestPermission] = useCameraPermissions();
-   
+
     useEffect(() => {
         requestPermission();
     }, []);
@@ -22,8 +24,8 @@ export default function FlashHandler({ pressed }) {
             <>
                 {/* <Header back={true} /> */}
                 <View style={styles.permissionWrapper}>
-                    <Text style={[ui.h4, { textAlign: "center" }]}>Para poder encender la linterna, debe conceder permisos</Text>
-                    <Button text="Permitir linterna" onClick={requestPermission} />
+                    <Text style={[ui.h4, { textAlign: "center" }]}>{language.t("_flashlightTitle")}</Text>
+                    <Button text={language.t("_flashlightPermission")} onClick={requestPermission} />
                 </View>
             </>
         );

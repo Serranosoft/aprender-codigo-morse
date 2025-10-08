@@ -3,7 +3,7 @@ import morseData from '../../assets/alphabet.json';
 import { colors, ui } from "../../src/utils/styles";
 import Header from "../../src/layout/header";
 import { useContext } from "react";
-import { AdsContext } from "../../src/utils/Context";
+import { AdsContext, LangContext } from "../../src/utils/Context";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../../src/utils/constants";
 
@@ -11,6 +11,8 @@ export default function Alphabet() {
 
     const { adsLoaded } = useContext(AdsContext);
     const { letters, numbers, symbols } = morseData;
+    const { language, setLanguage } = useContext(LangContext);
+
 
     const combinedData = [
         ...letters.map(item => ({ ...item, type: "letter" })),
@@ -26,13 +28,13 @@ export default function Alphabet() {
 
                 <View style={styles.hero}>
                     <Image source={require("../../assets/dictionary.png")} style={{ width: 100, height: 100 }} />
-                    <Text style={[ui.text, ui.center]}>Descubre <Text style={ui.bold}>como se escribe cada letra</Text> del diccionario morse.</Text>
+                    <Text style={[ui.text, ui.center]}>{language.t("_alphabetTitle")}</Text>
                 </View>
 
                 <View style={styles.columns}>
-                    <Text style={[ui.h3, ui.bold]}>Letra</Text>
-                    <Text style={[ui.h3, ui.bold]}>Morse</Text>
-                    <Text style={[ui.h3, ui.bold]}>Clave</Text>
+                    <Text style={[ui.h3, ui.bold]}>{language.t("_alphabetLetter")}</Text>
+                    <Text style={[ui.h3, ui.bold]}>{language.t("_alphabetMorse")}</Text>
+                    <Text style={[ui.h3, ui.bold]}>{language.t("_alphabetKey")}</Text>
                 </View>
                 <View style={styles.content}>
                     <FlatList
