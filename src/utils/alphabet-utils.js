@@ -1,0 +1,242 @@
+export default function alphabet(language) {
+    return [
+        {
+            "letters": [
+                {
+                    "letter": "A",
+                    "morse": ".-",
+                    "word": "Arco"
+                },
+                {
+                    "letter": "B",
+                    "morse": "-...",
+                    "word": "Barco"
+                },
+                {
+                    "letter": "C",
+                    "morse": "-.-.",
+                    "word": "Casa"
+                },
+                {
+                    "letter": "D",
+                    "morse": "-..",
+                    "word": "Dado"
+                },
+                {
+                    "letter": "E",
+                    "morse": ".",
+                    "word": "Eco"
+                },
+                {
+                    "letter": "F",
+                    "morse": "..-.",
+                    "word": "Faro"
+                },
+                {
+                    "letter": "G",
+                    "morse": "--.",
+                    "word": "Gato"
+                },
+                {
+                    "letter": "H",
+                    "morse": "....",
+                    "word": "Horno"
+                },
+                {
+                    "letter": "I",
+                    "morse": "..",
+                    "word": "Isla"
+                },
+                {
+                    "letter": "J",
+                    "morse": ".---",
+                    "word": "Jugo"
+                },
+                {
+                    "letter": "K",
+                    "morse": "-.-",
+                    "word": "Koala"
+                },
+                {
+                    "letter": "L",
+                    "morse": ".-..",
+                    "word": "Lupa"
+                },
+                {
+                    "letter": "M",
+                    "morse": "--",
+                    "word": "Mano"
+                },
+                {
+                    "letter": "N",
+                    "morse": "-.",
+                    "word": "Nube"
+                },
+                {
+                    "letter": "O",
+                    "morse": "---",
+                    "word": "Oso"
+                },
+                {
+                    "letter": "P",
+                    "morse": ".--.",
+                    "word": "Perro"
+                },
+                {
+                    "letter": "Q",
+                    "morse": "--.-",
+                    "word": "Queso"
+                },
+                {
+                    "letter": "R",
+                    "morse": ".-.",
+                    "word": "Rueda"
+                },
+                {
+                    "letter": "S",
+                    "morse": "...",
+                    "word": "Silla"
+                },
+                {
+                    "letter": "T",
+                    "morse": "-",
+                    "word": "Tren"
+                },
+                {
+                    "letter": "U",
+                    "morse": "..-",
+                    "word": "Uva"
+                },
+                {
+                    "letter": "V",
+                    "morse": "...-",
+                    "word": "Vela"
+                },
+                {
+                    "letter": "W",
+                    "morse": ".--",
+                    "word": "Wafle"
+                },
+                {
+                    "letter": "X",
+                    "morse": "-..-",
+                    "word": "Xilófono"
+                },
+                {
+                    "letter": "Y",
+                    "morse": "-.--",
+                    "word": "Yate"
+                },
+                {
+                    "letter": "Z",
+                    "morse": "--..",
+                    "word": "Zapato"
+                }
+            ],
+            "numbers": [
+                {
+                    "number": "0",
+                    "morse": "-----",
+                    "word": "Cero"
+                },
+                {
+                    "number": "1",
+                    "morse": ".----",
+                    "word": "Uno"
+                },
+                {
+                    "number": "2",
+                    "morse": "..---",
+                    "word": "Dos"
+                },
+                {
+                    "number": "3",
+                    "morse": "...--",
+                    "word": "Tres"
+                },
+                {
+                    "number": "4",
+                    "morse": "....-",
+                    "word": "Cuatro"
+                },
+                {
+                    "number": "5",
+                    "morse": ".....",
+                    "word": "Cinco"
+                },
+                {
+                    "number": "6",
+                    "morse": "-....",
+                    "word": "Seis"
+                },
+                {
+                    "number": "7",
+                    "morse": "--...",
+                    "word": "Siete"
+                },
+                {
+                    "number": "8",
+                    "morse": "---..",
+                    "word": "Ocho"
+                },
+                {
+                    "number": "9",
+                    "morse": "----.",
+                    "word": "Nueve"
+                }
+            ],
+            "symbols": [
+                {
+                    "symbol": ".",
+                    "morse": ".-.-.-",
+                    "word": "Punto"
+                },
+                {
+                    "symbol": ",",
+                    "morse": "--..--",
+                    "word": "Coma"
+                },
+                {
+                    "symbol": "?",
+                    "morse": "..--..",
+                    "word": "Pregunta"
+                },
+                {
+                    "symbol": "'",
+                    "morse": ".----.",
+                    "word": "Comilla"
+                },
+                {
+                    "symbol": "-",
+                    "morse": "-....-",
+                    "word": "Guion"
+                },
+                {
+                    "symbol": "/",
+                    "morse": "-..-.",
+                    "word": "Barra"
+                },
+                {
+                    "symbol": "(",
+                    "morse": "-.--.",
+                    "word": "-"
+                },
+                {
+                    "symbol": ")",
+                    "morse": "-.--.-",
+                    "word": "-"
+                },
+                {
+                    "symbol": "@",
+                    "morse": ".--.-.",
+                    "word": "Arroba"
+                },
+                {
+                    "symbol": "=",
+                    "morse": "-...-",
+                    "word": "Igual"
+                }
+            ]
+        }
+    ]
+}

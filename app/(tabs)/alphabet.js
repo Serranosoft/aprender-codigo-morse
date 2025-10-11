@@ -6,18 +6,17 @@ import { useContext } from "react";
 import { AdsContext, LangContext } from "../../src/utils/Context";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../../src/utils/constants";
+import alphabet from "../../src/utils/alphabet-utils";
 
 export default function Alphabet() {
 
     const { adsLoaded } = useContext(AdsContext);
-    const { letters, numbers, symbols } = morseData;
     const { language, setLanguage } = useContext(LangContext);
 
-
     const combinedData = [
-        ...letters.map(item => ({ ...item, type: "letter" })),
-        ...numbers.map(item => ({ ...item, type: "number" })),
-        ...symbols.map(item => ({ ...item, type: "symbol" })),
+        ...alphabet(language)[0].letters.map(item => ({ ...item, type: "letter" })),
+        ...alphabet(language)[0].numbers.map(item => ({ ...item, type: "number" })),
+        ...alphabet(language)[0].symbols.map(item => ({ ...item, type: "symbol" })),
     ];
 
     return (
