@@ -30,8 +30,6 @@ export default function SendDropdown({ setOption }) {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder={!isFocus ? '¿Cómo quieres enviar tu mensaje morse?' : value}
-            searchPlaceholder="¿Cómo quieres enviar tu mensaje morse?"
             value={value}
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
