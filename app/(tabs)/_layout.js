@@ -126,7 +126,7 @@ export default function Layout() {
                                 name="index"
                                 options={{
                                     tabBarStyle: { backgroundColor: colors.primary },
-                                    tabBarLabel:/*  language ? language.t("_tabTranslate") : */ "",
+                                    tabBarLabel: i18n.t("_tabTranslate"),
                                     tabBarLabelStyle: { marginBottom: 2 },
                                     tabBarIcon: ({ focused }) => <MaterialIcons name="translate" size={25} color={focused ? colors.accent : "#fff"} />,
                                     tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
@@ -139,7 +139,7 @@ export default function Layout() {
                                 name="learn"
                                 options={{
                                     tabBarStyle: { backgroundColor: colors.primary },
-                                    tabBarLabel: /* language ? language.t("_tabLearn") : */ "",
+                                    tabBarLabel: i18n.t("_tabLearn"),
                                     tabBarLabelStyle: { marginTop: 2 },
                                     tabBarIcon: ({ focused }) => <MaterialIcons name="wysiwyg" size={25} color={focused ? colors.accent : "#fff"} />,
                                     tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
@@ -152,7 +152,7 @@ export default function Layout() {
                                 name="send"
                                 options={{
                                     tabBarStyle: { backgroundColor: colors.primary },
-                                    tabBarLabel: /* language ? language.t("_tabSend") :  */"",
+                                    tabBarLabel: i18n.t("_tabSend"),
                                     tabBarLabelStyle: { marginTop: 2 },
                                     tabBarIcon: ({ focused }) => <MaterialIcons name="send" size={25} color={focused ? colors.accent : "#fff"} />,
                                     tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
@@ -166,7 +166,7 @@ export default function Layout() {
                                 options={{
 
                                     tabBarStyle: { backgroundColor: colors.primary },
-                                    tabBarLabel: /* language ? language.t("_tabAlphabet") : */ "",
+                                    tabBarLabel: i18n.t("_tabAlphabet"),
                                     tabBarLabelStyle: { marginTop: 2 },
                                     tabBarIcon: ({ focused }) => <MaterialIcons name="book" size={25} color={focused ? colors.accent : "#fff"} />,
                                     tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
@@ -180,7 +180,7 @@ export default function Layout() {
                                 options={{
                                     href: null,
                                     tabBarStyle: { backgroundColor: colors.primary },
-                                    tabBarLabel: /* language ? language.t("_tabSettings") : */ "",
+                                    tabBarLabel: i18n.t("_tabSettings"),
                                     tabBarLabelStyle: { marginTop: 2 },
                                     tabBarIcon: ({ focused }) => <MaterialIcons name="book" size={25} color={focused ? colors.accent : "#fff"} />,
                                     tabBarBadgeStyle: { color: "#fff", backgroundColor: "#337AB7" },
