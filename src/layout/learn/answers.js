@@ -73,12 +73,12 @@ export default function Answers({ letters, setMistakes, level }) {
                                 width: 140,
                                 backgroundColor:
                                     isMistaken === null
-                                        ? "#cccccc"
+                                        ? "#6b6b6b"
                                         : value === correctAnswer
                                             ? "#4CAF50"
                                             : isMistaken && value === pressedValue
                                                 ? "#F44336"
-                                                : "#cccccc"
+                                                : "#6b6b6b"
                             }
                         ]}
                     >

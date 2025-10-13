@@ -28,12 +28,14 @@ export default function FinishScreen({ mistakes, level, closeCallback, currentLe
     return (
         <View style={styles.container}>
             <View style={styles.hero}>
-                <Image source={require("../../../assets/medal.png")} style={{ width: 100, height: 100 }} />
                 {
                     mistakes > 9 ?
                         <Text style={[ui.text, ui.center]}>{language.t("_learnEncouragement")}</Text>
                         :
-                        <Text style={[ui.text, ui.center]}>{language.t("_learnCongratulations")} {level} {language.t("_learnCongratulations2")}</Text>
+                        <>
+                            <Image source={require("../../../assets/medal.png")} style={{ width: 100, height: 100 }} />
+                            <Text style={[ui.text, ui.center]}>{language.t("_learnCongratulations")} {level} {language.t("_learnCongratulations2")}</Text>
+                        </>
                 }
 
             </View>
