@@ -32,11 +32,7 @@ export default function Send() {
                         option === OPTIONS.VIBRATION ?
                             <VibrationHandler {...{ pressed }} />
                             :
-                            /* option === OPTIONS.FLASH ? */
                             <FlashHandler {...{ pressed }} />
-                        /* :
-                        <Text></Text> */
-
                     }
 
 

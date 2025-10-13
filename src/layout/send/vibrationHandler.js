@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { useEffect } from 'react';
 import { Vibration } from 'react-native'
 export default function VibrationHandler({ pressed }) {
