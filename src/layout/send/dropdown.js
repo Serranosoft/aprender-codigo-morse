@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import { useContext, useState } from "react";
-import { ui } from "../../utils/styles";
+import { colors, ui } from "../../utils/styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { OPTIONS } from "./utils";
 import { LangContext } from "../../utils/Context";
@@ -15,11 +15,12 @@ export default function SendDropdown({ setOption }) {
     
     return (
         <Dropdown
-            style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+            style={[styles.dropdown, isFocus && { borderColor: colors.accent }]}
             placeholderStyle={ui.text}
             selectedTextStyle={ui.text}
             inputSearchStyle={styles.inputSearchStyle}
             iconStyle={styles.iconStyle}
+            itemTextStyle={{ color: "#000" }}
             data={
                 [
                     { label: language.t("_sendVibration"), value: OPTIONS.VIBRATION },
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
 
     dropdown: {
         height: 50,
-        borderColor: 'gray',
+        borderColor: "lightgray",
         borderWidth: 0.5,
         borderRadius: 8,
         paddingHorizontal: 8,
