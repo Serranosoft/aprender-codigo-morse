@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useContext } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet, Text } from 'react-native';
 import { Camera, CameraView, useCameraPermissions } from 'expo-camera';
 import { ui } from '../../utils/styles';
 import { LangContext } from '../../utils/Context';
