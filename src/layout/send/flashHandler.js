@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     },
     camera: {
         position: 'absolute',
-        width: 1,
-        height: 1,
+        width: 0,
+        height: 0,
         top: -100, // fuera de pantalla
     },
 });
