@@ -5,236 +5,236 @@ export default function alphabet(language) {
                 {
                     "letter": "A",
                     "morse": ".-",
-                    "word": "Arco"
+                    "word": language.t("_alphabetWordA")
                 },
                 {
                     "letter": "B",
                     "morse": "-...",
-                    "word": "Barco"
+                    "word": language.t("_alphabetWordB")
                 },
                 {
                     "letter": "C",
                     "morse": "-.-.",
-                    "word": "Casa"
+                    "word": language.t("_alphabetWordC")
                 },
                 {
                     "letter": "D",
                     "morse": "-..",
-                    "word": "Dado"
+                    "word": language.t("_alphabetWordD")
                 },
                 {
                     "letter": "E",
                     "morse": ".",
-                    "word": "Eco"
+                    "word": language.t("_alphabetWordE")
                 },
                 {
                     "letter": "F",
                     "morse": "..-.",
-                    "word": "Faro"
+                    "word": language.t("_alphabetWordF")
                 },
                 {
                     "letter": "G",
                     "morse": "--.",
-                    "word": "Gato"
+                    "word": language.t("_alphabetWordG")
                 },
                 {
                     "letter": "H",
                     "morse": "....",
-                    "word": "Horno"
+                    "word": language.t("_alphabetWordH")
                 },
                 {
                     "letter": "I",
                     "morse": "..",
-                    "word": "Isla"
+                    "word": language.t("_alphabetWordI")
                 },
                 {
                     "letter": "J",
                     "morse": ".---",
-                    "word": "Jugo"
+                    "word": language.t("_alphabetWordJ")
                 },
                 {
                     "letter": "K",
                     "morse": "-.-",
-                    "word": "Koala"
+                    "word": language.t("_alphabetWordK")
                 },
                 {
                     "letter": "L",
                     "morse": ".-..",
-                    "word": "Lupa"
+                    "word": language.t("_alphabetWordL")
                 },
                 {
                     "letter": "M",
                     "morse": "--",
-                    "word": "Mano"
+                    "word": language.t("_alphabetWordM")
                 },
                 {
                     "letter": "N",
                     "morse": "-.",
-                    "word": "Nube"
+                    "word": language.t("_alphabetWordN")
                 },
                 {
                     "letter": "O",
                     "morse": "---",
-                    "word": "Oso"
+                    "word": language.t("_alphabetWordO")
                 },
                 {
                     "letter": "P",
                     "morse": ".--.",
-                    "word": "Perro"
+                    "word": language.t("_alphabetWordP")
                 },
                 {
                     "letter": "Q",
                     "morse": "--.-",
-                    "word": "Queso"
+                    "word": language.t("_alphabetWordQ")
                 },
                 {
                     "letter": "R",
                     "morse": ".-.",
-                    "word": "Rueda"
+                    "word": language.t("_alphabetWordR")
                 },
                 {
                     "letter": "S",
                     "morse": "...",
-                    "word": "Silla"
+                    "word": language.t("_alphabetWordS")
                 },
                 {
                     "letter": "T",
                     "morse": "-",
-                    "word": "Tren"
+                    "word": language.t("_alphabetWordT")
                 },
                 {
                     "letter": "U",
                     "morse": "..-",
-                    "word": "Uva"
+                    "word": language.t("_alphabetWordU")
                 },
                 {
                     "letter": "V",
                     "morse": "...-",
-                    "word": "Vela"
+                    "word": language.t("_alphabetWordV")
                 },
                 {
                     "letter": "W",
                     "morse": ".--",
-                    "word": "Wafle"
+                    "word": language.t("_alphabetWordW")
                 },
                 {
                     "letter": "X",
                     "morse": "-..-",
-                    "word": "Xilófono"
+                    "word": language.t("_alphabetWordX")
                 },
                 {
                     "letter": "Y",
                     "morse": "-.--",
-                    "word": "Yate"
+                    "word": language.t("_alphabetWordY")
                 },
                 {
                     "letter": "Z",
                     "morse": "--..",
-                    "word": "Zapato"
+                    "word": language.t("_alphabetWordZ")
                 }
             ],
             "numbers": [
                 {
                     "number": "0",
                     "morse": "-----",
-                    "word": "Cero"
+                    "word": language.t("_alphabetWord0")
                 },
                 {
                     "number": "1",
                     "morse": ".----",
-                    "word": "Uno"
+                    "word": language.t("_alphabetWord1")
                 },
                 {
                     "number": "2",
                     "morse": "..---",
-                    "word": "Dos"
+                    "word": language.t("_alphabetWord2")
                 },
                 {
                     "number": "3",
                     "morse": "...--",
-                    "word": "Tres"
+                    "word": language.t("_alphabetWord3")
                 },
                 {
                     "number": "4",
                     "morse": "....-",
-                    "word": "Cuatro"
+                    "word": language.t("_alphabetWord4")
                 },
                 {
                     "number": "5",
                     "morse": ".....",
-                    "word": "Cinco"
+                    "word": language.t("_alphabetWord5")
                 },
                 {
                     "number": "6",
                     "morse": "-....",
-                    "word": "Seis"
+                    "word": language.t("_alphabetWord6")
                 },
                 {
                     "number": "7",
                     "morse": "--...",
-                    "word": "Siete"
+                    "word": language.t("_alphabetWord7")
                 },
                 {
                     "number": "8",
                     "morse": "---..",
-                    "word": "Ocho"
+                    "word": language.t("_alphabetWord8")
                 },
                 {
                     "number": "9",
                     "morse": "----.",
-                    "word": "Nueve"
+                    "word": language.t("_alphabetWord9")
                 }
             ],
             "symbols": [
                 {
                     "symbol": ".",
                     "morse": ".-.-.-",
-                    "word": "Punto"
+                    "word": language.t("_alphabetSymbol1")
                 },
                 {
                     "symbol": ",",
                     "morse": "--..--",
-                    "word": "Coma"
+                    "word": language.t("_alphabetSymbol2")
                 },
                 {
                     "symbol": "?",
                     "morse": "..--..",
-                    "word": "Pregunta"
+                    "word": language.t("_alphabetSymbol3")
                 },
                 {
                     "symbol": "'",
                     "morse": ".----.",
-                    "word": "Comilla"
+                    "word": language.t("_alphabetSymbol4")
                 },
                 {
                     "symbol": "-",
                     "morse": "-....-",
-                    "word": "Guion"
+                    "word": language.t("_alphabetSymbol5")
                 },
                 {
                     "symbol": "/",
                     "morse": "-..-.",
-                    "word": "Barra"
+                    "word": language.t("_alphabetSymbol6")
                 },
                 {
                     "symbol": "(",
                     "morse": "-.--.",
-                    "word": "-"
+                    "word": language.t("_alphabetSymbol7")
                 },
                 {
                     "symbol": ")",
                     "morse": "-.--.-",
-                    "word": "-"
+                    "word": language.t("_alphabetSymbol8")
                 },
                 {
                     "symbol": "@",
                     "morse": ".--.-.",
-                    "word": "Arroba"
+                    "word": language.t("_alphabetSymbol9")
                 },
                 {
                     "symbol": "=",
                     "morse": "-...-",
-                    "word": "Igual"
+                    "word": language.t("_alphabetSymbol10")
                 }
             ]
         }
