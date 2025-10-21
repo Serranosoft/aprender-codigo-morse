@@ -1,4 +1,4 @@
-import { Image,  StyleSheet, Text, View } from "react-native";
+import { Image, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { colors, ui } from "../../src/utils/styles";
 import Header from "../../src/layout/header";
 import Translator from "../../src/layout/home/translator";
@@ -11,19 +11,20 @@ export default function Home() {
 
     const { adsLoaded } = useContext(AdsContext);
     const { language } = useContext(LangContext);
-    
+
     return (
         <>
             <Header />
             {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
-            <View style={styles.container}>
-                <View style={styles.hero}>
-                    <Image source={require("../../assets/notebook.png")} style={{ width: 100, height: 100 }} />
-                    <Text style={[ui.text, ui.center]}>{language.t("_translateTitle")}</Text>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <View style={styles.container}>
+                    <View style={styles.hero}>
+                        <Image source={require("../../assets/notebook.png")} style={{ width: 100, height: 100 }} />
+                        <Text style={[ui.text, ui.center]}>{language.t("_translateTitle")}</Text>
+                    </View>
+                    <Translator />
                 </View>
-
-                <Translator />
-            </View>
+            </TouchableWithoutFeedback>
         </>
     )
 }
@@ -42,5 +43,5 @@ const styles = StyleSheet.create({
         gap: 8,
         maxWidth: 250,
     },
-    
+
 })

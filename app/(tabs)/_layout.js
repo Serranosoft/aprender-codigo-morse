@@ -15,6 +15,7 @@ import * as Notifications from 'expo-notifications';
 import { scheduleWeeklyNotification } from "../../src/utils/notifications";
 import { userPreferences } from "../../src/utils/user-preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Constants from "expo-constants";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
@@ -203,6 +204,6 @@ const styles = StyleSheet.create({
         position: "relative",
         justifyContent: "center",
         backgroundColor: colors.primary,
-        paddingTop: StatusBar.currentHeight
+        paddingTop: Constants.statusBarHeight,
     },
 })

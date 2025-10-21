@@ -13,7 +13,11 @@
       "backgroundColor": "#1D1F20"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.paulaymanu113.morse",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -45,6 +49,13 @@
           "android": {
             "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }"
           }
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Permite a Código Morse acceder a tu cámara",
+          "microphonePermission": "Permite a Código Morse acceder a tu microfono"
         }
       ],
       "expo-localization"
