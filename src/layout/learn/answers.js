@@ -109,5 +109,6 @@ const styles = StyleSheet.create({
     answerText: {
         fontSize: 60,
         textAlign: "center",
+        color: "#000"
     }
 })
