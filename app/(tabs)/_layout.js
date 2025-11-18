@@ -1,7 +1,6 @@
 import { SplashScreen, Tabs } from "expo-router";
 import { View, StatusBar, StyleSheet } from "react-native";
 import { createRef, useEffect, useState } from "react";
-import { useFonts } from "expo-font";
 import { colors } from "../../src/utils/styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { initDb } from "../../src/utils/sqlite";
@@ -17,18 +16,11 @@ import { userPreferences } from "../../src/utils/user-preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 
-SplashScreen.preventAutoHideAsync();
 export default function Layout() {
 
-    // Carga de fuentes.
-    const [fontsLoaded] = useFonts({
-        "Regular": require("../../assets/fonts/AncizarSans-Regular.ttf"),
-        "Medium": require("../../assets/fonts/AncizarSans-Medium.ttf"),
-        "Semibold": require("../../assets/fonts/AncizarSans-Bold.ttf"),
-    });
-
     // Idioma
-    const [language, setLanguage] = useState(null);
+    const [langRdy, setLangRdy] = useState(false);
+    const [language, setLanguage] = useState(getLocales()[0].languageCode);
     const i18n = new I18n(translations);
     if (language) i18n.locale = language;
     i18n.enableFallback = true
@@ -47,30 +39,12 @@ export default function Layout() {
         initDb();
     }, [])
 
-    useEffect(() => {
-        Notifications.setNotificationHandler({
-            handleNotification: async () => ({
-                shouldShowBanner: true,
-                shouldShowList: true,
-                shouldPlaySound: false,
-                shouldSetBadge: false,
-            }),
-        });
-    }, [])
-
     // Al terminar de configurar el idioma se lanza notificación
     useEffect(() => {
-        if (language) {
+        if (langRdy) {
             scheduleWeeklyNotification(i18n);
         }
-    }, [language])
-
-    // Ocultar SplashScreen cuando la fuente y el idioma se ha cargado.
-    useEffect(() => {
-        if (fontsLoaded && language) {
-            SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded, language]);
+    }, [language, langRdy])
 
     useEffect(() => {
         if (adTrigger > 3) {
@@ -85,31 +59,33 @@ export default function Layout() {
     }, [adTrigger])
 
     async function getUserPreferences() {
-        // Language
         const language = await AsyncStorage.getItem(userPreferences.LANGUAGE);
         setLanguage(language || getLocales()[0].languageCode);
+        setLangRdy(true);
     }
 
     async function configureNotifications() {
-        Notifications.setNotificationHandler({
-            handleNotification: async () => ({
-                shouldShowBanner: true,
-                shouldShowList: true,
-                shouldPlaySound: false,
-                shouldSetBadge: false,
-            }),
-        });
+        const { granted } = await Notifications.requestPermissionsAsync();
+        if (granted) {
+            await AsyncStorage.setItem(userPreferences.NOTIFICATION_PERMISSION, "true");
+            Notifications.setNotificationHandler({
+                handleNotification: async () => ({
+                    shouldShowBanner: true,
+                    shouldShowList: true,
+                    shouldPlaySound: false,
+                    shouldSetBadge: false,
+                }),
+            });
+        } else {
+            await AsyncStorage.setItem(userPreferences.NOTIFICATION_PERMISSION, "false");
+
+        }
     }
 
     async function askForReview() {
         if (await StoreReview.hasAction()) {
             StoreReview.requestReview()
         }
-    }
-
-    // Esperar hasta que las fuentes se carguen
-    if (!fontsLoaded) {
-        return null;
     }
 
     return (
