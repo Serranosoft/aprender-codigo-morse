@@ -1,8 +1,9 @@
 import { useRef, useEffect, useContext } from 'react';
-import { View, Button, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { ui } from '../../utils/styles';
 import { LangContext } from '../../utils/Context';
+import Button from '../../components/button';
 
 export default function FlashHandler({ pressed }) {
     const { language } = useContext(LangContext);
