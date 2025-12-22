@@ -1,4 +1,4 @@
-import { useRef, useEffect, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { ui } from '../../utils/styles';
@@ -10,9 +10,6 @@ export default function FlashHandler({ pressed }) {
     const cameraRef = useRef(null);
     const [permission, requestPermission] = useCameraPermissions();
 
-    useEffect(() => {
-        requestPermission();
-    }, []);
 
     // Se está cargando el hook de permisos.
     if (!permission) {
@@ -23,7 +20,6 @@ export default function FlashHandler({ pressed }) {
     if (!permission.granted) {
         return (
             <>
-                {/* <Header back={true} /> */}
                 <View style={styles.permissionWrapper}>
                     <Text style={[ui.h4, { textAlign: "center" }]}>{language.t("_flashlightTitle")}</Text>
                     <Button text={language.t("_flashlightPermission")} onClick={requestPermission} />
@@ -40,6 +36,7 @@ export default function FlashHandler({ pressed }) {
                 facing={"back"}
                 style={styles.camera}
                 ref={cameraRef}
+                mute={true}
             />
 
 
@@ -50,6 +47,10 @@ export default function FlashHandler({ pressed }) {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
+    },
+    permissionWrapper: {
+        alignItems: "center",
+        justifyContent: "center"
     },
     camera: {
         position: 'absolute',

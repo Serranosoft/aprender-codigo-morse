@@ -16,10 +16,12 @@
         "ios": {
             "supportsTablet": false,
             "bundleIdentifier": "com.paulaymanu113.morse",
-            "buildNumber": "3",
+            "buildNumber": "4",
             "infoPlist": {
                 "ITSAppUsesNonExemptEncryption": false,
-                "NSPhotoLibraryUsageDescription": "Permite a Código Morse acceder a tus fotos"
+                "NSPhotoLibraryUsageDescription": "Permite a Código Morse acceder a tus fotos",
+                "NSCameraUsageDescription": "Permite a Código Morse acceder al flash de la cámara para transmitir mensajes.",
+                "NSMicrophoneUsageDescription": "Permite a Código Morse acceder al micrófono."
             }
         },
         "android": {
