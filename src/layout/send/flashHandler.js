@@ -22,7 +22,9 @@ export default function FlashHandler({ pressed }) {
             <>
                 <View style={styles.permissionWrapper}>
                     <Text style={[ui.h4, { textAlign: "center" }]}>{language.t("_flashlightTitle")}</Text>
-                    <Button text={language.t("_flashlightPermission")} onClick={requestPermission} />
+                    <Button onClick={() => requestPermission()}>
+                        <Text style={ui.text}>{language.t("_flashlightPermission")}</Text> 
+                    </Button>
                 </View>
             </>
         );
@@ -50,7 +52,8 @@ const styles = StyleSheet.create({
     },
     permissionWrapper: {
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        gap: 8
     },
     camera: {
         position: 'absolute',
