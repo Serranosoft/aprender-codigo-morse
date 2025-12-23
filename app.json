@@ -13,6 +13,7 @@
             "resizeMode": "contain",
             "backgroundColor": "#1D1F20"
         },
+        "scheme": "codigo-morse",
         "ios": {
             "supportsTablet": false,
             "bundleIdentifier": "com.paulaymanu113.morse",
