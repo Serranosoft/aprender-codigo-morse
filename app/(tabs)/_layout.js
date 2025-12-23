@@ -1,6 +1,6 @@
 import { SplashScreen, Tabs } from "expo-router";
 import { View, StatusBar, StyleSheet } from "react-native";
-import { createRef, useEffect, useState } from "react";
+import { createRef, useCallback, useEffect, useState } from "react";
 import { colors } from "../../src/utils/styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { initDb } from "../../src/utils/sqlite";
@@ -16,10 +16,12 @@ import { userPreferences } from "../../src/utils/user-preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 
-export default function Layout() {
+SplashScreen.preventAutoHideAsync();
 
+export default function Layout() {
+    // App State
+    const [appIsReady, setAppIsReady] = useState(false);
     // Idioma
-    const [langRdy, setLangRdy] = useState(false);
     const [language, setLanguage] = useState(getLocales()[0].languageCode);
     const i18n = new I18n(translations);
     if (language) i18n.locale = language;
@@ -34,17 +36,23 @@ export default function Layout() {
 
     // Configurar notificaciones y cargar preferencias de usuario
     useEffect(() => {
-        configureNotifications();
-        getUserPreferences();
-        initDb();
+        try {
+            initDb();
+            getUserPreferences();
+            configureNotifications();
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setAppIsReady(true);
+        }
     }, [])
 
     // Al terminar de configurar el idioma se lanza notificación
     useEffect(() => {
-        if (langRdy) {
+        if (appIsReady) {
             scheduleWeeklyNotification(i18n);
         }
-    }, [language, langRdy])
+    }, [appIsReady])
 
     useEffect(() => {
         if (adTrigger > 3) {
@@ -61,7 +69,6 @@ export default function Layout() {
     async function getUserPreferences() {
         const language = await AsyncStorage.getItem(userPreferences.LANGUAGE);
         setLanguage(language || getLocales()[0].languageCode);
-        setLangRdy(true);
     }
 
     async function configureNotifications() {
@@ -88,10 +95,20 @@ export default function Layout() {
         }
     }
 
+    const onLayoutRootView = useCallback(async () => {
+        if (appIsReady) {
+            await SplashScreen.hideAsync();
+        }
+    }, [appIsReady]);
+
+    if (!appIsReady) {
+        return null;
+    }
+
     return (
         <>
             <AdsHandler ref={adsHandlerRef} showOpenAd={showOpenAd} adsLoaded={adsLoaded} setAdsLoaded={setAdsLoaded} setShowOpenAd={setShowOpenAd} />
-            <View style={styles.container}>
+            <View style={styles.container} onLayout={onLayoutRootView}>
                 <LangContext.Provider value={{ language: i18n, setLanguage: setLanguage }}>
                     <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, adsLoaded: adsLoaded, setShowOpenAd: setShowOpenAd }} >
 
