@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colors, ui } from "../../src/utils/styles";
 import { LangContext } from "../../src/utils/Context";
 import Header from "../../src/layout/header";
+import { userPreferences } from "../../src/utils/user-preferences";
 
 export default function Settings() {
 
