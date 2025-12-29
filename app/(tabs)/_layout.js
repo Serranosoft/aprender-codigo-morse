@@ -15,6 +15,7 @@ import { scheduleWeeklyNotification } from "../../src/utils/notifications";
 import { userPreferences } from "../../src/utils/user-preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
+import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 
 SplashScreen.preventAutoHideAsync();
 
