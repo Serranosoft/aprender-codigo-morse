@@ -36,15 +36,19 @@ export default function Layout() {
 
     // Configurar notificaciones y cargar preferencias de usuario
     useEffect(() => {
-        try {
-            initDb();
-            getUserPreferences();
-            configureNotifications();
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setAppIsReady(true);
+        async function prepare() {
+            try {
+                await handleTrackingAds();
+                await initDb();
+                await getUserPreferences();
+                await configureNotifications();
+            } catch (error) {
+            } finally {
+                setAppIsReady(true);
+            }
         }
+
+        prepare();
     }, [])
 
     // Al terminar de configurar el idioma se lanza notificación
@@ -65,6 +69,10 @@ export default function Layout() {
             }
         }
     }, [adTrigger])
+
+    async function handleTrackingAds() {
+        return await requestTrackingPermissionsAsync();
+    }
 
     async function getUserPreferences() {
         const language = await AsyncStorage.getItem(userPreferences.LANGUAGE);

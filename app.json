@@ -22,7 +22,8 @@
                 "ITSAppUsesNonExemptEncryption": false,
                 "NSPhotoLibraryUsageDescription": "Permite a Código Morse acceder a tus fotos",
                 "NSCameraUsageDescription": "Permite a Código Morse acceder al flash de la cámara para transmitir mensajes.",
-                "NSMicrophoneUsageDescription": "Permite a Código Morse acceder al micrófono."
+                "NSMicrophoneUsageDescription": "Permite a Código Morse acceder al micrófono.",
+                "NSUserTrackingUsageDescription": "Este identificador se utilizará para mostrarte anuncios personalizados y mejorar la relevancia de la publicidad que recibes."
             }
         },
         "android": {
