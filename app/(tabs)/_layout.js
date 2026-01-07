@@ -1,5 +1,5 @@
 import { SplashScreen, Tabs } from "expo-router";
-import { View, StatusBar, StyleSheet } from "react-native";
+import { View, StatusBar, StyleSheet, Platform } from "react-native";
 import { createRef, useCallback, useEffect, useState } from "react";
 import { colors } from "../../src/utils/styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -40,6 +40,9 @@ export default function Layout() {
         async function prepare() {
             try {
                 await handleTrackingAds();
+                if (Platform.OS === 'ios') {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
                 await initDb();
                 await getUserPreferences();
                 await configureNotifications();
