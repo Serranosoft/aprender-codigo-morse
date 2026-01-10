@@ -3,7 +3,7 @@
     "jsEngine": "jsc",
     "name": "Codigo morse",
     "slug": "codigo-morse",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "orientation": "portrait",
     "icon": "./assets/icono-morse-app.png",
     "userInterfaceStyle": "light",
@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.paulaymanu113.morse",
-      "buildNumber": "8",
+      "buildNumber": "9",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "NSPhotoLibraryUsageDescription": "Permite a Código Morse acceder a tus fotos",
