@@ -22,7 +22,7 @@ export default function FlashHandler({ pressed }) {
             <>
                 <View style={styles.permissionWrapper}>
                     <Text style={[ui.h4, { textAlign: "center" }]}>{language.t("_flashlightTitle")}</Text>
-                    <Button onClick={() => requestPermission()}>
+                    <Button onPress={() => requestPermission()}>
                         <Text style={ui.text}>{language.t("_flashlightPermission")}</Text> 
                     </Button>
                 </View>
