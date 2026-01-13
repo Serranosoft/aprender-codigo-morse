@@ -1,5 +1,5 @@
 import { useRef, useContext } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Linking } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { ui } from '../../utils/styles';
 import { LangContext } from '../../utils/Context';
@@ -10,6 +10,9 @@ export default function FlashHandler({ pressed }) {
     const cameraRef = useRef(null);
     const [permission, requestPermission] = useCameraPermissions();
 
+    async function openSettings() {
+        Linking.openSettings();
+    }
 
     // Se está cargando el hook de permisos.
     if (!permission) {
@@ -21,10 +24,22 @@ export default function FlashHandler({ pressed }) {
         return (
             <>
                 <View style={styles.permissionWrapper}>
-                    <Text style={[ui.h4, { textAlign: "center" }]}>{language.t("_flashlightTitle")}</Text>
-                    <Button onPress={() => requestPermission()}>
-                        <Text style={ui.text}>{language.t("_flashlightPermission")}</Text> 
-                    </Button>
+                    {
+                        !permission.canAskAgain ?
+                            <>
+                                <Text style={[ui.muted, { textAlign: "center" }]}>Activa los permisos de la cámara en Ajustes para poder acceder a la linterna</Text>
+                                <Button onPress={() => openSettings()}>
+                                    <Text style={ui.text}>Abrir ajustes</Text>
+                                </Button>
+                            </>
+                            :
+                            <>
+                                <Text style={[ui.muted, { textAlign: "center" }]}>{language.t("_flashlightTitle")}</Text>
+                                <Button onPress={() => requestPermission()}>
+                                    <Text style={ui.text}>{language.t("_flashlightPermission")}</Text>
+                                </Button>
+                            </>
+                    }
                 </View>
             </>
         );
@@ -57,9 +72,10 @@ const styles = StyleSheet.create({
     },
     camera: {
         position: 'absolute',
-        width: 1,
-        height: 1,
-        top: -10, // fuera de pantalla
-        left: -10, // fuera de pantalla
+        width: 10,
+        height: 10,
+        bottom: 0,
+        right: 0,
+        opacity: 0.01
     },
 });

@@ -21,9 +21,9 @@
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "NSPhotoLibraryUsageDescription": "Permite a Código Morse acceder a tus fotos",
-        "NSCameraUsageDescription": "Permite a Código Morse acceder al flash de la cámara para transmitir mensajes.",
-        "NSMicrophoneUsageDescription": "Permite a Código Morse acceder al micrófono.",
-        "NSUserTrackingUsageDescription": "Este identificador se utilizará para mostrarte anuncios personalizados y mejorar la relevancia de la publicidad que recibes."
+        "NSCameraUsageDescription": "Esta app utiliza el flash de la cámara para emitir señales de luz en código Morse. No se grabará ni utilizará la imagen de la cámara para ningún otro fin.",
+        "NSMicrophoneUsageDescription": "Se requiere acceso al micrófono para captar y procesar señales de audio Morse.",
+        "NSUserTrackingUsageDescription": "Usamos este identificador para mostrarte anuncios personalizados y mejorar tu experiencia con las herramientas de aprendizaje."
       }
     },
     "android": {
