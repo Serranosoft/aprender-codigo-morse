@@ -61,8 +61,8 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Permite a Código Morse acceder a tu cámara",
-          "microphonePermission": "Permite a Código Morse acceder a tu microfono"
+          "cameraPermission": "Esta app utiliza el flash de la cámara para emitir señales de luz en código Morse. No se grabará ni utilizará la imagen de la cámara para ningún otro fin.",
+          "microphonePermission": "Se requiere acceso al micrófono para captar y procesar señales de audio Morse."
         }
       ],
       "expo-localization",
