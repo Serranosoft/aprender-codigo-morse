@@ -23,7 +23,7 @@
         "NSPhotoLibraryUsageDescription": "Permite a Código Morse acceder a tus fotos",
         "NSCameraUsageDescription": "Esta app utiliza el flash de la cámara para emitir señales de luz en código Morse. No se grabará ni utilizará la imagen de la cámara para ningún otro fin.",
         "NSMicrophoneUsageDescription": "Se requiere acceso al micrófono para captar y procesar señales de audio Morse.",
-        "NSUserTrackingUsageDescription": "Usamos este identificador para mostrarte anuncios personalizados y mejorar tu experiencia con las herramientas de aprendizaje."
+        "NSUserTrackingUsageDescription": "Este identificador se utilizará para ofrecerte anuncios personalizados y mejorar tu experiencia con las herramientas de aprendizaje."
       }
     },
     "android": {
@@ -47,7 +47,7 @@
           "androidAppId": "ca-app-pub-3738413299329691~2833775109",
           "iosAppId": "ca-app-pub-3738413299329691~2833775109",
           "delayAppMeasurementInit": true,
-          "userTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
+           "userTrackingUsageDescription": "Este identificador se utilizará para ofrecerte anuncios personalizados y mejorar tu experiencia con las herramientas de aprendizaje."
         }
       ],
       [
@@ -121,7 +121,7 @@
       [
         "expo-tracking-transparency",
         {
-          "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+           "userTrackingPermission": "Este identificador se utilizará para ofrecerte anuncios personalizados y mejorar tu experiencia con las herramientas de aprendizaje."
         }
       ]
     ],

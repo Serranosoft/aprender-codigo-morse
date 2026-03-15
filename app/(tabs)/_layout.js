@@ -39,10 +39,6 @@ export default function Layout() {
     useEffect(() => {
         async function prepare() {
             try {
-                await handleTrackingAds();
-                if (Platform.OS === 'ios') {
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-                }
                 await initDb();
                 await getUserPreferences();
                 await configureNotifications();
@@ -54,6 +50,29 @@ export default function Layout() {
 
         prepare();
     }, [])
+
+    // Solicitar permiso de rastreo cuando la app esté lista y activa
+    useEffect(() => {
+        if (appIsReady) {
+            const subscription = AppState.addEventListener("change", async (nextAppState) => {
+                if (nextAppState === 'active') {
+                    // Pequeño delay extra para asegurar que la UI del sistema esté lista
+                    setTimeout(async () => {
+                        await handleTrackingAds();
+                    }, 1500);
+                }
+            });
+
+            // Si ya está activa al cargar, lanzarlo
+            if (AppState.currentState === 'active') {
+                setTimeout(async () => {
+                    await handleTrackingAds();
+                }, 1500);
+            }
+
+            return () => subscription.remove();
+        }
+    }, [appIsReady])
 
     // Al terminar de configurar el idioma se lanza notificación
     useEffect(() => {
@@ -75,7 +94,9 @@ export default function Layout() {
     }, [adTrigger])
 
     async function handleTrackingAds() {
-        return await requestTrackingPermissionsAsync();
+        if (Platform.OS === 'ios') {
+            return await requestTrackingPermissionsAsync();
+        }
     }
 
     async function getUserPreferences() {

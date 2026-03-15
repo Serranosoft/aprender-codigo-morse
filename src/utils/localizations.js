@@ -56,7 +56,7 @@ const translations = {
 
         // Uso de la linterna
         _flashlightTitle: "Para poder encender la linterna, debe conceder permisos",
-        _flashlightPermission: "Permitir linterna",
+        _flashlightPermission: "Continuar",
 
         // Ajustes
         _dropDownSettings: "Ajustes",
@@ -185,7 +185,7 @@ const translations = {
 
         // Uso de la linterna
         _flashlightTitle: "To turn on the flashlight, you must grant permission",
-        _flashlightPermission: "Allow flashlight",
+        _flashlightPermission: "Continue",
 
         // Ajustes
         _dropDownSettings: "Settings",
@@ -314,7 +314,7 @@ const translations = {
 
         // Uso de la linterna
         _flashlightTitle: "Um die Taschenlampe einzuschalten, müssen Sie die Berechtigung erteilen",
-        _flashlightPermission: "Taschenlampe erlauben",
+        _flashlightPermission: "Weiter",
 
         // Ajustes
         _dropDownSettings: "Einstellungen",
@@ -443,7 +443,7 @@ const translations = {
 
         // Uso de la linterna
         _flashlightTitle: "Pour allumer la lampe, vous devez accorder les permissions",
-        _flashlightPermission: "Autoriser la lampe",
+        _flashlightPermission: "Continuer",
 
         // Ajustes
         _dropDownSettings: "Paramètres",
@@ -580,7 +580,7 @@ const translations = {
 
         // Uso de la linterna
         _flashlightTitle: "Para ligar a lanterna, deve conceder permissões",
-        _flashlightPermission: "Permitir lanterna",
+        _flashlightPermission: "Continuar",
 
         // Ajustes
         _dropDownSettings: "Configurações",
@@ -709,7 +709,7 @@ const translations = {
 
         // Uso della torcia
         _flashlightTitle: "Per accendere la torcia, devi concedere i permessi",
-        _flashlightPermission: "Permetti torcia",
+        _flashlightPermission: "Continua",
 
         // Impostazioni
         _dropDownSettings: "Impostazioni",
