@@ -1,5 +1,5 @@
 import { SplashScreen, Tabs } from "expo-router";
-import { View, StatusBar, StyleSheet, Platform } from "react-native";
+import { View, StatusBar, StyleSheet, Platform, AppState } from "react-native";
 import { createRef, useCallback, useEffect, useState } from "react";
 import { colors } from "../../src/utils/styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
