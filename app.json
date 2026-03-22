@@ -1,6 +1,5 @@
 {
     "expo": {
-        "jsEngine": "jsc",
         "name": "Codigo morse",
         "slug": "codigo-morse",
         "version": "1.1.10",
@@ -17,7 +16,7 @@
         "ios": {
             "supportsTablet": false,
             "bundleIdentifier": "com.paulaymanu113.morse",
-            "buildNumber": "13",
+            "buildNumber": "14",
             "infoPlist": {
                 "ITSAppUsesNonExemptEncryption": false,
                 "NSPhotoLibraryUsageDescription": "Permite a Código Morse acceder a tus fotos",
