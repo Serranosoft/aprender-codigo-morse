@@ -22,6 +22,7 @@ SplashScreen.preventAutoHideAsync();
 export default function Layout() {
     // App State
     const [appIsReady, setAppIsReady] = useState(false);
+    const [attResolved, setAttResolved] = useState(Platform.OS === 'ios' ? false : true);
     // Idioma
     const [language, setLanguage] = useState(getLocales()[0].languageCode);
     const i18n = new I18n(translations);
@@ -55,24 +56,26 @@ export default function Layout() {
     useEffect(() => {
         if (appIsReady) {
             const subscription = AppState.addEventListener("change", async (nextAppState) => {
-                if (nextAppState === 'active') {
+                if (nextAppState === 'active' && !attResolved) {
                     // Pequeño delay extra para asegurar que la UI del sistema esté lista
                     setTimeout(async () => {
                         await handleTrackingAds();
+                        setAttResolved(true);
                     }, 1500);
                 }
             });
 
             // Si ya está activa al cargar, lanzarlo
-            if (AppState.currentState === 'active') {
+            if (AppState.currentState === 'active' && !attResolved) {
                 setTimeout(async () => {
                     await handleTrackingAds();
+                    setAttResolved(true);
                 }, 1500);
             }
 
             return () => subscription.remove();
         }
-    }, [appIsReady])
+    }, [appIsReady, attResolved])
 
     // Al terminar de configurar el idioma se lanza notificación
     useEffect(() => {
@@ -140,7 +143,7 @@ export default function Layout() {
 
     return (
         <>
-            <AdsHandler canStartAds={appIsReady} ref={adsHandlerRef} showOpenAd={showOpenAd} adsLoaded={adsLoaded} setAdsLoaded={setAdsLoaded} setShowOpenAd={setShowOpenAd} />
+            <AdsHandler canStartAds={appIsReady && attResolved} ref={adsHandlerRef} showOpenAd={showOpenAd} adsLoaded={adsLoaded} setAdsLoaded={setAdsLoaded} setShowOpenAd={setShowOpenAd} />
             <View style={styles.container} onLayout={onLayoutRootView}>
                 <LangContext.Provider value={{ language: i18n, setLanguage: setLanguage }}>
                     <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, adsLoaded: adsLoaded, setShowOpenAd: setShowOpenAd }} >
